@@ -1,0 +1,211 @@
+.testimonio_user .wave {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  z-index: 1;
+}
+
+
+.testimonio_user .container_testimonio {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 7rem;
+  padding: 0 2rem;
+}
+
+.testimonio_user .img {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 99;
+}
+
+.testimonio_user .form_testimonio {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  z-index: 999;
+}
+
+.testimonio_user .img img {
+  width: 500px;
+}
+
+.testimonio_user .form_testimonio form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.testimonio_user .form_testimonio form .head img {
+  max-width: 150px;
+}
+
+.testimonio_user .form_testimonio form .head h2 {
+  font-size: 2.1em;
+}
+
+.testimonio_user .form_testimonio form .head p {
+  font-size: 1em;
+  color: #7f7f7f;
+  font-weight: lighter;
+  margin: 0 50px;
+}
+
+.testimonio_user .form_testimonio form .grupo-input {
+  width: 100%;
+  position: relative;
+  max-width: 420px;
+  text-align: left;
+}
+.testimonio_user .form_testimonio form .grupo-input input,
+.testimonio_user .form_testimonio form .grupo-input textarea {
+  width: 100%;
+  height: 45px;
+  border: none;
+  border-bottom: 2px solid #b4b3b3;
+  color: #7f7f7f;
+  font-weight: 600;
+  padding-left: 35px;
+  font-family: "Poppins", sans-serif;
+  outline: none;
+  box-shadow: none;
+  border-radius: 0;
+  font-weight: 500;
+  background: transparent;
+
+}
+.testimonio_user .form_testimonio form .grupo-input textarea {
+  padding-top: 12px;
+}
+
+.testimonio_user .form_testimonio form .grupo-input span:not(.file) {
+  position: absolute;
+  left: 0;
+  top: 10px;
+  color: #b4b3b3;
+}
+
+.testimonio_user .form_testimonio form .grupo-input input:focus,
+.testimonio_user .form_testimonio form .grupo-input textarea:focus {
+  border-bottom: 2px solid #ff9702;
+}
+
+.testimonio_user .form_testimonio form .grupo-input input[type="file"] {
+  display: none;
+}
+
+.testimonio_user .form_testimonio form .grupo-input label {
+  font-weight: lighter;
+  color: #7f7f7f;
+  text-align: left;
+}
+
+.testimonio_user .form_testimonio form .grupo-input .upload {
+  margin-top: 15px;
+  width: 100%;
+  background: #ff9702;
+  height: 45px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  gap: 8px;
+  color: #fff;
+}
+
+.testimonio_user .form_testimonio form .grupo-input .btn {
+  border: none;
+  background: #17181d;
+  border-radius: 15px;
+  color: #fff;
+  font-size: 1.1em;
+  cursor: pointer;
+  padding: 0;
+}
+
+@media screen and (max-width: 1200px) {
+  .testimonio_user .form_testimonio form .head p {
+    margin: 0;
+  }
+
+  .testimonio_user .form_testimonio form .grupo-input input,
+  .testimonio_user .form_testimonio form .grupo-input textarea {
+    background: transparent;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .testimonio_user form {
+    width: 290px;
+  }
+
+  .testimonio_user .form_testimonio h2 {
+    font-size: 2.4rem;
+    margin: 8px 0;
+  }
+
+  .testimonio_user .img img {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .testimonio_user .container_testimonio {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonio_user .img {
+    display: none;
+  }
+
+  .testimonio_user .wave {
+    display: none;
+  }
+
+  .testimonio_user .form_testimonio {
+    justify-content: center;
+  }
+}
+@media screen and (max-width: 620px) {
+
+  .testimonio_user .form_testimonio{
+    width: calc(100% - 20px);
+    padding: 0 10px;
+  }
+  .testimonio_user .container_testimonio {
+    margin: 50px 0;
+    padding: 0 10px;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .testimonio_user .form_testimonio form .head h2 {
+    font-size: 1.5em;
+  }
+
+  .testimonio_user .form_testimonio form .head p {
+    font-size: 1em;
+  }
+
+  .testimonio_user .form_testimonio form .grupo-input {
+    max-width: 100%;
+  }
+
+  .testimonio_user .form_testimonio form .grupo-input input,
+  .testimonio_user .form_testimonio form .grupo-input textarea{
+    width: calc(100% - 50px);
+  }
+
+  .testimonio_user .form_testimonio form .grupo-input input[type="submit"]{
+    width: 100%;
+  }
+}

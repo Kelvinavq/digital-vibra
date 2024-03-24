@@ -1,0 +1,249 @@
+header {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+  }
+  
+  header .left {
+    height: 100%;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 100px 0;
+  }
+  header .left h1 {
+    font-size: 1.2em;
+  }
+  
+  header .left h1 strong {
+    background: linear-gradient(90deg, #ff9702 0%, #fe914e 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  header .left h2 {
+    font-size: 3em;
+    font-weight: bold;
+  }
+  
+  header .left .separador {
+    margin-top: -20px;
+    width: 70%;
+    height: 6px;
+    animation: fluido 10s ease-in-out infinite;
+    background: linear-gradient(-45deg, #ff9702, #e73c7e, #23a6d5, #fe914e);
+    background-size: 300%;
+  }
+  
+  header .left p {
+    color: var(--texto-claro);
+    font-weight: 300;
+  }
+  
+  header .right {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 150, 2, 0.692) 0%,
+        rgba(254, 145, 78, 0.836) 100%
+      ),
+      url("../../../assets/images/FondoHeader.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 100px;
+    position: relative;
+  }
+  
+  header .right .img {
+    width: 450px;
+    height: 450px;
+    background: var(--blanco);
+    border-radius: 50%;
+    position: absolute;
+    bottom: -100px;
+    left: 50px;
+    box-shadow: 0px 10px 30px 0px #00000086;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  header .right .img img {
+    max-width: 100%;
+  }
+  
+  .cards {
+    width: 90%;
+    display: flex;
+    gap: 30px;
+    justify-content: space-evenly;
+    z-index: 999;
+    margin-top: 50px;
+  }
+  
+  .cards .Card {
+    width: 100%;
+    max-width: 400px;
+    height: 110px;
+    border-radius: 50px;
+    box-shadow: 0px 0px 40px 0px #00000083;
+    background: var(--blanco);
+    display: grid;
+    grid-template-columns: 30% 70%;
+    place-items: center;
+    cursor: pointer;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .cards .Card .icono {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .cards .caCardrd .icono i {
+    font-size: 24px;
+    color: var(--primario);
+    filter: drop-shadow(3px 0px 2px #00000056);
+  }
+  
+  .cards .Card:hover i {
+    color: var(--primario);
+    filter: drop-shadow(3px 0px 2px #00000056);
+    transition: all 0.3s;
+  }
+  
+  .cards .Card .texto {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 3px;
+  }
+  
+  .cards .Card .texto span {
+    font-weight: bold;
+    font-size: 1.1em;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .cards .Card .texto p {
+    color: var(--texto-claro);
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  @media (max-width: 1020px) {
+    header {
+      grid-template-columns: 1fr;
+    }
+  
+    header .left {
+      padding: 0;
+    }
+  
+    header .right {
+      width: 90%;
+      height: 420px;
+      margin-top: 50px;
+    }
+  
+    header .right .img {
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+  
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+    }
+  
+    .Card:first-child {
+      grid-area: 1 / 1 / 2 / 2;
+    }
+  
+    .Card:nth-child(2) {
+      grid-area: 1 / 2 / 2 / 3;
+    }
+  
+    .Card:last-child {
+      grid-area: 2 / 1 / 3 / 3;
+    }
+  }
+  
+  @media (max-width: 700px) {
+    .cards {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  
+  @media (max-width: 500px) {
+    header .right .img {
+      width: 320px;
+      height: 320px;
+    }
+  
+    header .right {
+      height: 320px;
+    }
+  
+    header .left {
+      width: 90%;
+    }
+  
+    header .cards .Card {
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translatey(0px);
+    }
+    50% {
+      transform: translatey(-20px);
+    }
+    100% {
+      transform: translatey(0px);
+    }
+  }
+  
+  @keyframes fluido {
+    0% {
+      background-position: 0 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0 50%;
+    }
+  }
+  

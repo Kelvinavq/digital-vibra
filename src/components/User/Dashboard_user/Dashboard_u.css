@@ -1,0 +1,326 @@
+.container_user .left,
+.container_user .right {
+  width: 100%;
+  background: var(--blanco);
+  height: 100%;
+}
+
+.dashboard_user main {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  gap: 15px;
+  padding-right: 20px;
+  margin-top: 50px;
+}
+
+.container_user .left {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.container_user .right {
+  width: calc(100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.container_user .container_bienvenida {
+  display: flex;
+  gap: 10px;
+}
+
+.container_user .bienvenida {
+  width: 320px;
+  height: 280px;
+  border-radius: 20px;
+  background-image: linear-gradient(
+      0deg,
+      rgba(255, 151, 2, 1) 0%,
+      rgba(0, 212, 255, 0) 100%
+    ),
+    url("../../../assets/images/Simple.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 0 15px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.container_user .bienvenida .title h2 {
+  color: var(--oscuro);
+  font-size: 1.6em;
+}
+
+.container_user .bienvenida .title p {
+  color: var(--oscuro);
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.container_user .bienvenida .button {
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container_user .bienvenida .button button {
+  background: var(--oscuro);
+  color: var(--blanco);
+  text-transform: uppercase;
+  padding: 10px 25px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.container_user .bienvenida .button button:hover {
+  background: var(--oscuro-dos);
+}
+
+/* items */
+
+.container_user .items_list {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+}
+
+.container_user .items_list ul {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  gap: 8px;
+  margin: 0;
+  margin-top: 20px;
+}
+
+.container_user .items_list ul li {
+  max-width: 100%;
+  min-width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 64px;
+  background: #fff;
+  border-radius: 20px;
+}
+
+.container_user .items_list ul li .icono {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--primario);
+  display: grid;
+  place-items: center;
+  color: var(--oscuro);
+  margin-left: 10px;
+}
+
+.container_user .items_list ul li .text span,
+.container_user .items_list ul li .text p {
+  margin: 0;
+}
+
+.container_user .items_list ul li .text span {
+  font-size: 1em;
+  font-weight: 500;
+}
+
+.container_user .items_list ul li .text p {
+  font-size: 1.2em;
+  font-weight: 500;
+  margin: 3px 0;
+}
+
+/* lista prospectos */
+
+.container_user .prospectos_list {
+  width: 100%;
+  background: var(--blanco-dos);
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+}
+
+.container_user .prospectos_list .tabla_prospectos {
+  width: 100%;
+  display: flex;
+}
+
+.container_user .prospectos_list .title {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container_user .prospectos_list .title h2 {
+  font-weight: 500;
+  padding: 0 15px;
+}
+
+.container_user .prospectos_list .title button {
+  background: var(--gris);
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  margin-right: 15px;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.container_user .prospectos_list .title button:hover {
+  background: var(--primario);
+  color: var(--blanco);
+}
+
+.container_user .prospectos_list .tabla_prospectos table {
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+}
+
+.container_user .prospectos_list .tabla_prospectos table thead th {
+  color: var(--texto-claro);
+  font-weight: 400;
+  font-size: 0.9em;
+}
+
+.container_user .prospectos_list .tabla_prospectos table th,
+.container_user .prospectos_list .tabla_prospectos table td {
+  padding: 15px 0;
+  text-align: center;
+}
+
+.container_user .prospectos_list .tabla_prospectos table td.si span {
+  background: var(--success);
+  padding: 5px 10px;
+  border-radius: 8px;
+  color: var(--blanco);
+}
+
+.container_user .prospectos_list .tabla_prospectos table td.no span {
+  background: var(--danger);
+  padding: 5px 8px;
+  border-radius: 8px;
+  color: var(--blanco);
+}
+
+.container_user .prospectos_list .tabla_prospectos table th {
+  text-transform: capitalize;
+}
+
+.container_user .prospectos_list .tabla_prospectos table tbody tr {
+  color: var(--oscuro);
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+/* ranking */
+
+.container_user .ranking {
+  margin-top: 20px;
+  width: 100%;
+  height: 280px;
+  background: var(--blanco-dos);
+  border-radius: 20px;
+}
+
+.container_user .ranking .title {
+  width: 100%;
+}
+
+.container_user .ranking .title h2 {
+  padding-left: 10px;
+  font-weight: 500;
+}
+
+.container_user .estadisticas {
+  margin-top: 20px;
+  width: 100%;
+  background: var(--blanco-dos);
+  border-radius: 20px;
+}
+
+.container_user .estadisticas .title {
+  width: 100%;
+}
+
+.container_user .estadisticas .title h2 {
+  padding-left: 10px;
+  font-weight: 500;
+}
+
+.container_user .estadisticas .container_estadisticas {
+  display: flex;
+  justify-content: space-evenly;
+  place-items: center;
+  margin-top: 50px;
+  flex-wrap: wrap;
+}
+
+.container_user .estadisticas .container_estadisticas_dos {
+  display: flex;
+  justify-content: space-between;
+  place-items: center;
+  margin-top: 50px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 1200px) {
+  .container_user .estadisticas .container_estadisticas_dos {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 1160px) {
+  .dashboard_user main {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 920px) {
+  .container_bienvenida {
+    flex-direction: column;
+  }
+
+  .container_bienvenida .bienvenida {
+    width: 100%;
+    padding: 0;
+    text-align: center;
+  }
+}
+
+@media (max-width: 777px) {
+  .container_bienvenida {
+    margin-top: 60px;
+  }
+
+  .dashboard_user main {
+    grid-template-columns: 1fr;
+    place-items: center;
+    margin-bottom: 50px;
+    padding: 0;
+  }
+
+  .container_user .left,
+  .container_user .right {
+    width: 98%;
+  }
+}

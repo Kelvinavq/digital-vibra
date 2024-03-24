@@ -1,0 +1,220 @@
+.ajustes_user main {
+  width: calc(100%);
+  height: 100%;
+  margin-top: 50px;
+}
+
+.ajustes_user .ajustes {
+  width: 100%;
+}
+
+.ajustes_user .tarjeta_ajustes {
+  width: 100%;
+  max-width: 650px;
+  border-radius: 20px;
+  background-image: linear-gradient(
+      0deg,
+      rgba(255, 151, 2, 1) 0%,
+      rgba(0, 212, 255, 0) 100%
+    ),
+    url("../../../assets/images/Simple.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ajustes_user .tarjeta_ajustes .title h4 {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.ajustes_user .tarjeta_ajustes .top_ajustes {
+  width: 100%;
+  display: flex;
+  margin-top: 20px;
+}
+
+.ajustes_user .tarjeta_ajustes .top_ajustes .perfil {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.ajustes_user .tarjeta_ajustes .top_ajustes .perfil input[type="file"] {
+  display: none;
+}
+
+.ajustes_user .tarjeta_ajustes .top_ajustes .perfil label {
+  background: var(--oscuro);
+  color: var(--blanco);
+  padding: 10px 30px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.ajustes_user .tarjeta_ajustes .top_ajustes .perfil label:hover {
+  background: var(--oscuro-dos);
+}
+
+.ajustes_user .tarjeta_ajustes .top_ajustes .perfil p {
+  color: var(--texto-claro);
+}
+
+.ajustes_user .tarjeta_ajustes .top_ajustes .perfil .button {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.ajustes_user .tarjeta_ajustes .top_ajustes .perfil .foto img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0px 0px 19px 0px rgba(255, 255, 255, 0.75);
+}
+
+.ajustes_user .tarjeta_ajustes .info {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 60px;
+}
+
+.ajustes_user .tarjeta_ajustes .info .nombre h4 {
+  font-size: 2em;
+  margin: 0;
+}
+
+.ajustes_user .tarjeta_ajustes .info .nombre p {
+  margin: 0;
+  font-size: 1.2em;
+  margin-top: 8px;
+}
+
+.ajustes_user .tarjeta_ajustes .info .matricula {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ajustes_user .tarjeta_ajustes .info .matricula h4 {
+  width: 100%;
+  margin: 0;
+  font-size: 1.2em;
+  margin-top: 10px;
+}
+
+.ajustes_user .tarjeta_ajustes .info .matricula .numero {
+  display: flex;
+  gap: 12px;
+}
+
+.ajustes_user .tarjeta_ajustes .info .matricula .numero h2 {
+  margin: 0;
+  font-size: 2.2em;
+}
+
+.ajustes_user .tarjeta_ajustes .info .matricula .numero button svg {
+  font-size: 1em;
+}
+
+.ajustes_user .compartir {
+  width: 100%;
+  max-width: 520px;
+  margin-top: 25px;
+
+  background: var(--blanco-dos);
+  border-radius: 20px;
+  display: grid;
+  place-items: center;
+}
+
+.ajustes_user .compartir .content{
+    width: 95%;
+}
+
+.ajustes_user .compartir  p{
+    color: var(--texto-claro);
+}
+
+.ajustes_user .compartir  .buttons{
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+.ajustes_user .compartir  .buttons button{
+    padding: 10px 25px;
+    border-radius: 12px;
+    color: var(--blanco);
+}
+
+.ajustes_user .compartir  .buttons button:first-child{
+    background: var(--primario);
+}
+
+.ajustes_user .compartir  .buttons button:last-child{
+    background: var(--oscuro);
+}
+
+@media (max-width: 768px) {
+  .ajustes_user main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ajustes_user .ajustes {
+    width: 95%;
+  }
+  .ajustes_user .tarjeta_ajustes {
+    width: 100%;
+    padding: 10px 0;
+    display: grid;
+    place-items: center;
+  }
+  .ajustes_user .top_ajustes,
+  .ajustes_user .info {
+    width: 95% !important;
+  }
+
+  .ajustes_user .tarjeta_ajustes .title {
+    width: 95%;
+    display: flex;
+    justify-content: start;
+  }
+
+  .ajustes_user .tarjeta_ajustes .info {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 520px) {
+  .ajustes_user .tarjeta_ajustes .title {
+    justify-content: center;
+  }
+  .ajustes_user .tarjeta_ajustes .top_ajustes .perfil {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ajustes_user .tarjeta_ajustes .top_ajustes .perfil .button {
+    gap: 5px;
+  }
+
+  .ajustes_user .tarjeta_ajustes .info {
+    margin-top: 15px;
+    justify-content: center;
+    text-align: center;
+  }
+}

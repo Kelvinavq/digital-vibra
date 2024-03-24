@@ -1,0 +1,151 @@
+.ventajas {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .titulo {
+    width: 80%;
+    text-align: center;
+  }
+  
+  .titulo h2 {
+    font-size: 2.4em;
+    text-transform: uppercase;
+  }
+  
+  .titulo strong {
+    animation: fluido 10s ease-in-out infinite;
+    background: linear-gradient(-45deg, #ff9702, #e73c7e, #23a6d5, #fe914e);
+    background-size: 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  .titulo p {
+    color: var(--texto-claro);
+    font-size: 1.2em;
+  }
+  
+  .contenedor-ventajas {
+    width: 90%;
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    place-items: center;
+    gap: 20px;
+  }
+  
+  .ventaja {
+    width: 90%;
+    height: 320px;
+    border-radius: 30px;
+    background: #e0e0e0;
+    box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  
+  .ventaja .icono {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #e0e0e0;
+    box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease;
+  }
+  
+  .ventaja .icono span {
+    font-size: 35px;
+    color: var(--primario);
+  }
+  
+  .ventaja:hover .icono {
+    background: lightgrey;
+    border: 3px inset white;
+    background: #e8e8e8;
+    box-shadow: inset 20px 20px 60px #c5c5c5, inset -20px -20px 60px #ffffff;
+    border-radius: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+  }
+  
+  .ventaja .texto {
+    width: 90%;
+    text-align: center;
+    color: #535353;
+    margin-top: 10px;
+  }
+  
+  @media (max-width: 1020px) {
+    .contenedor-ventajas {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+    }
+  
+    .ventaja:first-child {
+      grid-area: 1 / 1 / 2 / 2;
+    }
+  
+    .ventaja:nth-child(2) {
+      grid-area: 1 / 2 / 2 / 3;
+    }
+  
+    .ventaja:last-child {
+      grid-area: 2 / 1 / 3 / 3;
+      height: 220px;
+    }
+  }
+  
+  @media (max-width: 620px) {
+    .ventajas {
+      width: 90%;
+    }
+  
+    .ventajas .titulo {
+      width: 100% ;
+    }
+  
+  
+    .contenedor-ventajas {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .ventaja {
+      height: auto;
+      padding: 40px 0;
+      width: 100%;
+    }
+    .ventaja:last-child {
+      height: auto;
+    }
+  }
+  
+  @keyframes fluido {
+    0% {
+      background-position: 0 50%;
+    }
+  
+    50% {
+      background-position: 100% 50%;
+    }
+  
+    100% {
+      background-position: 0 50%;
+    }
+  }
+  

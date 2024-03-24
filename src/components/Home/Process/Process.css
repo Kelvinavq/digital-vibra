@@ -1,0 +1,197 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;900&display=swap");
+
+.procesos {
+  width: 100%;
+  height: auto;
+  padding-bottom: 50px;
+  background: var(--oscuro);
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 100px;
+}
+
+.procesos .titulo {
+  width: 90%;
+  text-align: center;
+}
+
+.procesos .titulo h2 {
+  font-size: 2.4em;
+  color: var(--blanco);
+}
+
+.procesos .titulo strong {
+  animation: fluido 10s ease-in-out infinite;
+  background: linear-gradient(-45deg, #ff9702, #e73c7e, #23a6d5, #fe914e);
+  background-size: 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.contenedor-proceso {
+  width: 90%;
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  place-items: center;
+  gap: 20px;
+}
+
+.contenedor-proceso .proceso {
+  width: 90%;
+  height: 350px;
+  border-radius: 30px;
+  background: var(--oscuro);
+  box-shadow: 15px 15px 30px #0000009c, -15px -15px 30px #00000093;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  transition: all 0.4s;
+  cursor: pointer;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+.proceso .numero {
+  font-size: 80px;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  -webkit-text-stroke: 2px var(--texto-claro);
+  color: transparent;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  margin: 0;
+}
+
+.contenedor-proceso .proceso .contenido {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  gap: 12px;
+}
+
+.contenedor-proceso .proceso .contenido i {
+  font-size: 45px;
+  color: var(--blanco);
+}
+.contenedor-proceso .proceso:hover i {
+  color: var(--primario);
+  transition: all 0.4s;
+}
+
+.contenedor-proceso .proceso .contenido span {
+  color: var(--blanco);
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.contenedor-proceso .proceso .contenido p {
+  color: var(--texto-claro);
+}
+
+.contenedor-proceso .proceso:hover .numero {
+  -webkit-text-stroke: 2px var(--primario);
+  transition: all 0.4s;
+}
+
+.procesos .texto {
+  width: 80%;
+  text-align: center;
+  margin-top: 30px;
+  color: var(--blanco);
+  font-size: 1.2em;
+}
+
+.procesos .btn {
+  display: inline-block;
+  transition: all 0.2s ease-in;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  color: var(--blanco);
+  padding: 0.7em 1.7em;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 0.5em;
+  background: var(--primario);
+  border: none;
+  box-shadow: 15px 15px 30px #0000009c, -15px -15px 30px #00000093;
+  margin-bottom: 120px;
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+.procesos .btn:before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) scaleY(1) scaleX(1.25);
+  top: 100%;
+  width: 140%;
+  height: 180%;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  display: block;
+  transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+  z-index: -1;
+}
+
+.procesos .btn:after {
+  content: "";
+  position: absolute;
+  left: 55%;
+  transform: translateX(-50%) scaleY(1) scaleX(1.45);
+  top: 180%;
+  width: 160%;
+  height: 190%;
+  background-color: #009087;
+  border-radius: 50%;
+  display: block;
+  transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+  z-index: -1;
+}
+
+.procesos .btn:hover {
+  color: #ffffff;
+}
+
+.procesos .btn:hover:before {
+  top: -35%;
+  background-color: var(--color-success);
+  transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+.procesos .btn:hover:after {
+  top: -45%;
+  background-color: var(--color-success);
+  transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+@media (max-width: 1020px) {
+  .contenedor-proceso {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .contenedor-proceso {
+    grid-template-columns: 1fr;
+  }
+
+  .procesos {
+    -webkit-clip-path: polygon(0 0, 100% 1%, 100% 97%, 0% 100%);
+    clip-path: polygon(0 0, 100% 1%, 100% 97%, 0% 100%);
+  }
+.contenedor-proceso .proceso {
+    width: 100%;
+}
+
+}

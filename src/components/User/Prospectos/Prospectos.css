@@ -1,0 +1,369 @@
+.prospectos_user main {
+  width: calc(100%);
+  height: 100%;
+  margin-top: 50px;
+}
+
+.prospectos_user .prospectos .title {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.prospectos_user .prospectos .button button {
+  background: var(--primario);
+  padding: 10px 15px;
+  color: var(--blanco);
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.prospectos_user .prospectos .filtro {
+  width: 100%;
+  background: var(--gris);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px 0;
+}
+
+.prospectos_user .prospectos .filtro .filtros,
+.prospectos_user .prospectos .filtro .buscador {
+  width: 95%;
+}
+
+.prospectos_user .prospectos .filtro .filtros {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.prospectos_user .prospectos .filtro .filtros div {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: center;
+}
+
+.prospectos_user .prospectos .filtro .filtros div span,
+.prospectos_user .prospectos .filtro .filtros div p {
+  font-weight: 600;
+  font-size: 1.2em;
+  margin: 0;
+}
+
+.prospectos_user .prospectos .filtro .filtros div select {
+  width: 180px;
+  height: 40px;
+  border-radius: 12px;
+  padding: 0 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.prospectos_user .prospectos .filtro .filtros div button {
+  background: var(--primario);
+  padding: 10px 25px;
+  color: var(--blanco);
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.prospectos_user .prospectos .filtro .buscador {
+  margin-top: 15px;
+  width: 95%;
+  display: flex;
+  align-items: center;
+}
+
+.prospectos_user .prospectos .filtro .buscador svg {
+  color: var(--texto-claro);
+  font-size: 2em;
+}
+
+.prospectos_user .prospectos .filtro .buscador input {
+  width: 100%;
+  height: 45px;
+  border: none;
+  background: transparent;
+  outline: none;
+  color: var(--texto-claro);
+}
+
+.prospectos_user .prospectos .tabla_prospectos {
+  margin-top: 30px;
+  background: var(--blanco-dos);
+  border-radius: 20px;
+}
+
+.prospectos_user .prospectos .tabla_prospectos table {
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+}
+
+.prospectos_user .prospectos .tabla_prospectos table thead th {
+  color: var(--texto-claro);
+  font-weight: 400;
+  font-size: 0.9em;
+}
+
+.prospectos_user .prospectos .tabla_prospectos table th,
+.prospectos_user .prospectos .tabla_prospectos table td {
+  padding: 15px 0;
+  text-align: center;
+}
+
+.prospectos_user .prospectos .tabla_prospectos table td.si span {
+  background: var(--success);
+  padding: 5px 10px;
+  border-radius: 8px;
+  color: var(--blanco);
+}
+
+.prospectos_user .prospectos .tabla_prospectos table td.no span {
+  background: var(--danger);
+  padding: 5px 8px;
+  border-radius: 8px;
+  color: var(--blanco);
+}
+
+.prospectos_user .prospectos .tabla_prospectos table td button svg {
+  color: var(--primario);
+}
+
+.prospectos_user .prospectos .tabla_prospectos table th {
+  text-transform: capitalize;
+}
+
+.prospectos_user .prospectos .tabla_prospectos table tbody tr {
+  color: var(--oscuro);
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+.prospectos_user .prospectos .tabla_prospectos table tbody tr td {
+  text-transform: capitalize;
+}
+
+.prospectos_user .modal-overlay {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  background: #00000048;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.prospectos_user .modal-overlay .modal {
+  width: 720px;
+  max-width: 90%;
+  background: var(--blanco);
+  padding: 20px;
+  border-radius: 20px;
+  position: relative;
+  animation: animate 0.4s ease;
+  max-height: 620px;
+  overflow-y: auto;
+}
+
+.prospectos_user .modal-overlay .modal .close-modal {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: var(--gris);
+  transition: all 0.4s;
+}
+
+.prospectos_user .modal-overlay .modal .close-modal:hover svg {
+  color: var(--primario);
+}
+
+.prospectos_user .modal .content-modal {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+.prospectos_user .modal .content-modal .input input,
+.prospectos_user .modal .content-modal .input textarea,
+.prospectos_user .modal .content-modal .input select {
+  box-sizing: border-box;
+  width: 100%;
+  height: 2.625em;
+  padding: 0 0.75em;
+  transition: border-color 0.1s, box-shadow 0.1s;
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.06), 0 0 0 3px rgba(0, 0, 0, 0);
+  color: inherit;
+  font-size: 1.125em;
+}
+
+.prospectos_user .modal .content-modal .input textarea {
+  height: 120px;
+  padding-top: 10px;
+  outline: none;
+  margin: 10px 0;
+}
+
+.prospectos_user .modal .content-modal .right {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.prospectos_user .modal .content-modal .right .inputs{
+  width: 100%;
+  display: flex;
+  gap: 25px;
+}
+
+.prospectos_user .modal .content-modal .right .input {
+  width: 100%;
+  margin-left: 15px;
+}
+
+.prospectos_user .modal .content-modal .right .input p{
+  margin: 0;
+}
+
+.prospectos_user .modal .content-modal .switch {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 3.5em;
+  height: 25px;
+  margin-top: 12px;
+}
+
+/* Hide default HTML checkbox */
+.prospectos_user .modal .content-modal .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.prospectos_user .modal .content-modal .slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: var(--gris);
+  border-radius: 50px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.prospectos_user .modal .content-modal .slider:before {
+  position: absolute;
+  content: "";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+  width: 25px;
+  inset: 0;
+  background-color: white;
+  border-radius: 50px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.233);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.prospectos_user .modal .content-modal .switch input:checked + .slider {
+  background: var(--success);
+}
+
+
+
+.prospectos_user .modal .content-modal .switch input:checked + .slider:before {
+  transform: translateX(1.9em);
+}
+
+.prospectos_user .modal .content-modal .right .input button{
+  width: 95%;
+  background: var(--oscuro);
+  border-radius: 12px;
+  text-align: center;
+  height: 45px;
+  padding: 0;
+  color: var(--blanco);
+  cursor: pointer;
+  margin: 18px 0;
+  transition: all .3s;
+}
+.prospectos_user .modal .content-modal .right .input button:hover{
+  background: var(--oscuro-dos);
+}
+.prospectos_user .modal .content-modal .right .input .update {
+  background: var(--primario);
+}
+
+.prospectos_user .modal .content-modal .right .input .update:hover{
+  background: var(--secundario);
+}
+
+.prospectos_user .modal .content-modal .right .input input{
+  width: 95%;
+  margin: 10px 0;
+}
+
+@media (max-width: 620px) {
+  .prospectos_user .modal .content-modal {
+    grid-template-columns:  1fr;
+  }
+  .prospectos_user .modal .content-modal .right .input button{
+    width: 97%;
+   
+  }
+  .prospectos_user .modal-overlay .modal {
+    max-height: 450px;
+    overflow-y: auto;
+  }
+  
+}
+
+@media (max-width: 400px) {
+  .prospectos_user .prospectos .filtro .filtros {
+    flex-direction: column;
+  }
+
+  .prospectos_user .prospectos .filtro .filtros div {
+    width: 100%;
+  }
+
+  .prospectos_user .prospectos .filtro .filtros div select,
+  .prospectos_user .prospectos .filtro .filtros div button {
+    text-align: center;
+    width: 100%;
+  }
+}
+
+@keyframes animate {
+  0% {
+    transform: scale(0.7);
+  }
+  45% {
+    transform: scale(1.05);
+  }
+  80% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

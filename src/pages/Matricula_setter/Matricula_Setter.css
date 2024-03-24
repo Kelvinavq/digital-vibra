@@ -1,0 +1,199 @@
+.matricula_user .wave {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  z-index: 1;
+}
+
+.matricula_user .container_matricula {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 7rem;
+  padding: 0 2rem;
+}
+
+.matricula_user .img {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 99;
+}
+
+.matricula_user .form_testimonio {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  z-index: 999;
+}
+
+.matricula_user .img img {
+  width: 500px;
+}
+
+.matricula_user .form_matricula {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.matricula_user .form_testimonio {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  z-index: 999;
+}
+
+.matricula_user .img img {
+  width: 500px;
+}
+
+.matricula_user .form_matricula form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.matricula_user .form_matricula form .head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.matricula_user .form_matricula form .head img {
+  max-width: 150px;
+}
+
+.matricula_user .form_matricula form .head h2 {
+  font-size: 2.1em;
+}
+
+.matricula_user .form_matricula form .head p {
+  font-size: 1em;
+  color: #7f7f7f;
+  font-weight: lighter;
+  margin: 0 50px;
+}
+
+.matricula_user .inputContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.matricula_user .otp-input {
+  background-color: rgb(228, 228, 228);
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border: none;
+  border-radius: 7px;
+  caret-color: var(--primario);
+  color: var(--oscuro);
+  outline: none;
+  font-weight: 600;
+}
+
+.matricula_user .otp-input:focus,
+.matricula_user .otp-input:valid {
+  background-color: rgba(255, 178, 127, 0.199);
+  transition-duration: 0.3s;
+}
+
+.matricula_user form button {
+  width: 260px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--primario);
+  border: none;
+  color: var(--blanco);
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+.matricula_user form button:hover {
+  background: var(--oscuro-dos);
+}
+@media (max-width: 1500px) {
+  .matricula_user .form_matricula{
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .matricula_user .container_matricula {
+    gap: 0;
+    grid-template-columns: 40% 60%;
+  }
+
+  .matricula_user .container_matricula .form_matricula {
+    z-index: 999;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .matricula_user .form_matricula{
+    width: 100%;
+  }
+  .matricula_user .container_matricula {
+    grid-template-columns: 1fr;
+  }
+
+  .matricula_user .img {
+    display: none;
+  }
+
+  .matricula_user .wave {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 720px) {
+
+}
+@media screen and (max-width: 620px) {
+  .matricula_user {
+    height: 100vh;
+  }
+  .matricula_user .container_matricula {
+    margin: 50px 0;
+    padding: 0 10px;
+    height: 100%;
+    overflow-y: auto;
+  }
+}
+
+@media screen and (max-width: 550px) {
+    .matricula_user .container_matricula {
+        margin: 0 0;
+        overflow-x: hidden;
+        padding: 0;
+      }
+
+    .matricula_user .otp-input {
+        width: 35px;
+        height: 35px;
+      }
+      
+}
+
+.btn_verificar{
+  background: var(--texto-claro) !important; 
+}
+
+.btn_verificar.active{
+  background: var(--primario) !important; 
+}

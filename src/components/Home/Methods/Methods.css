@@ -1,0 +1,147 @@
+.metodos {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 50px;
+  }
+  
+  .metodos .titulo {
+    width: 90%;
+    text-align: center;
+  }
+  
+  .metodos .titulo h2 {
+    font-size: 2.4em;
+    color: var(--oscuro);
+  }
+  
+  .metodo {
+    width: 100%;
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    place-items: center;
+    gap: 20px;
+  }
+  
+  .tarjeta span {
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 20px;
+    color: var(--oscuro);
+  
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .go-corner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    overflow: hidden;
+    top: 0;
+    right: 0;
+    background-color: var(--primario);
+    border-radius: 0 4px 0 32px;
+  }
+  
+  .tarjeta {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 262px;
+    background: #e0e0e0;
+    box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
+    border-radius: 30px;
+    padding: 32px 24px;
+    margin: 12px;
+    text-decoration: none;
+    z-index: 0;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  .tarjeta i {
+    font-size: 30px;
+    animation: fluido 10s ease-in-out infinite;
+    background: linear-gradient(-45deg, #ff9702, #e73c7e, #23a6d5, #fe914e);
+    background-size: 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(3px 0px 2px #00000056);
+  }
+  
+  .tarjeta:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: -16px;
+    right: -16px;
+    background: var(--primario);
+    height: 32px;
+    width: 32px;
+    border-radius: 32px;
+    transform: scale(1);
+    transform-origin: 50% 50%;
+    transition: transform 0.25s ease-out;
+  }
+  
+  .tarjeta:hover:before {
+    transform: scale(21);
+  }
+  
+  @media (max-width: 1020px) {
+    .metodo {
+      grid-template-columns: 1fr 1fr;
+    }
+  
+    .tarjeta {
+      max-width: 220px;
+    }
+  }
+  
+  @media (max-width: 700px) {
+    .contenedor-metodos {
+      width: 90%;
+    }
+    .metodos {
+      width: 90%;
+    }
+  
+    .metodo {
+      display: flex;
+      flex-direction: column;
+    }
+    .metodo .tarjeta {
+      max-width: 100% !important;
+      width: 100% !important;
+    }
+  
+    .metodos .titulo h2 {
+      font-size: 1.8em;
+    }
+  }
+  
+  @keyframes fluido {
+    0% {
+      background-position: 0 50%;
+    }
+  
+    50% {
+      background-position: 100% 50%;
+    }
+  
+    100% {
+      background-position: 0 50%;
+    }
+  }
+  

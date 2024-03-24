@@ -1,0 +1,178 @@
+.container_user {
+  width: 100%;
+  justify-content: end;
+}
+
+.container_user main {
+  width: calc(100% ) !important;
+  height: 100%;
+  padding: 0 10px;
+}
+
+.container_user button {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.container_user {
+  display: flex;
+}
+
+.container_user .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 260px;
+  height: 100%;
+  padding: 0 16px;
+  background: var(--oscuro);
+  transition: all 0.4s;
+  border-left: 6px solid var(--primario);
+  z-index: 999;
+}
+
+.container_user .sidebar.open {
+  transition: all 0.4s;
+  transform: translateX(-100%);
+}
+
+.container_user .sidebar.open .floatBtn {
+  transition: all 0.4s;
+  right: -60px;
+  background: none;
+  color: var(--oscuro);
+}
+
+.container_user .sidebar-header {
+  display: flex;
+  align-items: center;
+  height: 72px;
+  padding: 0 1rem 0 0;
+  border-bottom: 1px solid var(--oscuro-dos);
+  color: var(--blanco);
+}
+
+.container_user .sidebar-header img {
+  max-width: 40px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.container_user .sidebar .sidebar-header button:not(.floatBtn) {
+  width: 54px;
+}
+
+.container_user .sidebar-logo {
+  height: 20px;
+}
+
+.container_user .sidebar button:not(.floatBtn) {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+  padding: 0 16px;
+  color: var(--blanco);
+  transition: background 0.3s;
+}
+
+.container_user .sidebar button:not(.floatBtn) span:nth-child(2) {
+  flex: 1 1 auto;
+}
+
+.container_user .sidebar button:is(.active, :hover) {
+  background: var(--primario);
+  color: var(--blanco);
+}
+
+.container_user .sidebar button span {
+  transition: 0.3s;
+}
+
+.container_user .sidebar button.active > span:nth-child(3) {
+  rotate: -180deg;
+}
+
+.container_user .sidebar button:not(.active):hover {
+  background: var(--oscuro-dos);
+}
+
+.sub-nav button.active::before {
+  background: var(--blanco);
+}
+
+.container_user .sub-nav {
+  overflow: hidden;
+  /* height: 0; */
+  transition: 0.5s;
+}
+
+.container_user .sub-nav.open svg:last-child {
+  transform: rotate(90deg);
+}
+
+/* .container_user .sub-nav.open {
+    height: 200px;
+  } */
+
+.container_user .sub-nav button:not(.floatBtn) {
+  padding-left: 54px;
+}
+
+.container_user .sub-nav button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 25px;
+  translate: 0 -50%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--blanco);
+}
+
+.container_user .material-symbols-outlined {
+  font-size: 22px;
+}
+
+.container_user .floatBtn {
+  width: 40px;
+  height: 40px;
+  border-radius: 15px;
+  background: var(--oscuro-dos);
+  color: var(--primario);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: -20px;
+  top: 10px;
+}
+
+.container_user .btnMenu {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .container_user {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    place-items: center;
+  }
+}

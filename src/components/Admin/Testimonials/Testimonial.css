@@ -1,0 +1,249 @@
+/* Estilos generales */
+.details {
+  margin-top: 50px;
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-gap: 30px;
+}
+
+.details.portfolio {
+  margin-top: 50px;
+}
+
+.head {
+  width: 100%;
+  padding: 20px;
+}
+
+.head button {
+  padding: 10px 20px;
+  border: none;
+  color: var(--blanco);
+  background: var(--primario);
+  cursor: pointer;
+  outline: none;
+  border-radius: 15px;
+}
+
+.details .recentOrders {
+  position: relative;
+  display: grid;
+  height: auto;
+  background: var(--blanco);
+  padding: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+}
+
+.details .recentOrders p {
+  margin-top: 20px;
+}
+
+.details .cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cardHeader h2 {
+  font-weight: 600;
+  color: var(--primario);
+}
+
+.cardHeader .btn {
+  position: relative;
+  padding: 5px 10px;
+  background: var(--primario);
+  text-decoration: none;
+  color: var(--blanco);
+  border-radius: 6px;
+}
+
+.tabla {
+  width: 100%;
+}
+
+.details .tabla table {
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+
+  border-collapse: separate;
+  border-spacing: 0 15px;
+}
+
+.details .tabla table thead th {
+  color: var(--oscuro-dos);
+  font-weight: 400;
+  font-size: 0.9em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.details .tabla table tr {
+  padding: 0.35em;
+}
+
+.details .tabla table th,
+.details .tabla table td {
+  padding: 15px 0;
+  text-align: center;
+}
+
+.details .tabla table th {
+  letter-spacing: 0.1em;
+  text-transform: capitalize;
+}
+
+.details .tabla table tbody tr {
+  color: var(--oscuro);
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+.details .tabla table tbody tr:hover {
+  background: var(--primario);
+  
+}
+
+
+
+.details .tabla table tbody tr td:first-child {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.details .tabla table tbody tr td:last-child {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.details .tabla table tbody tr td img{
+  max-width: 30px;
+}
+
+@media screen and (max-width: 924px) {
+  .details .tabla table {
+    border: 0;
+  }
+  .details .tabla table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  .details .tabla table tbody tr td:first-child {
+    border-radius: 0;
+  }
+
+  .details .tabla table tbody tr td:last-child {
+    border-radius: 0;
+  }
+
+  .details .tabla table tr {
+    display: block;
+    margin-bottom: 0.625em;
+  }
+
+  .details .tabla table td {
+    display: block;
+    font-size: 0.8em;
+    text-align: right;
+    border-radius: 0;
+    border-bottom: 1px solid var(--oscuro-tres);
+  }
+
+
+  .details .tabla table td::before {
+    /*
+      * aria-label has no advantage, it won't be read inside a .details .tabla table
+      content: attr(aria-label);
+      */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .details .tabla table tbody tr td:first-child {
+    border-bottom: 0;
+  }
+
+  .details .tabla table tbody tr td:last-child {
+    border-bottom: 0;
+  }
+}
+
+.status {
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.status.aprobado {
+  background: #8de02c;
+  color: var(--blanco);
+}
+
+.status.pendiente {
+  background: #e9b10a;
+  color: var(--blanco);
+}
+
+.status.rechazado {
+  background: #f00;
+  color: var(--blanco);
+}
+
+.status.inProgress {
+  background: #1795ce;
+  color: var(--blanco);
+}
+
+.recentCustomers {
+  position: relative;
+  display: grid;
+  /* min-height: 500px; */
+  padding: 20px;
+  background: var(--blanco);
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+}
+
+.recentCustomers .imgBx {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.recentCustomers .imgBx img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+@media screen and (max-width: 768px) {
+
+  .details {
+    width: 100%;
+    padding: 0;
+  }
+
+  .details.portfolio {
+    padding: 0;
+    margin-top: 30px;
+  }
+}

@@ -1,0 +1,161 @@
+.form_matricula .tarjeta_setter {
+  width: 100%;
+  max-width: 650px;
+  border-radius: 20px;
+  background-image: linear-gradient(
+      0deg,
+      rgba(255, 151, 2, 1) 0%,
+      rgba(0, 212, 255, 0) 100%
+    ),
+    url("../../assets/images/Simple.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow);
+}
+
+.form_matricula .tarjeta_setter .title h4 {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.form_matricula .tarjeta_setter .top_setter {
+  width: 100%;
+  display: flex;
+  margin-top: 20px;
+}
+
+.form_matricula .tarjeta_setter .top_setter .perfil {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.form_matricula .tarjeta_setter .top_setter .perfil input[type="file"] {
+  display: none;
+}
+
+.form_matricula .tarjeta_setter .top_setter .perfil label {
+  background: var(--oscuro);
+  color: var(--blanco);
+  padding: 10px 30px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.form_matricula .tarjeta_setter .top_setter .perfil label:hover {
+  background: var(--oscuro-dos);
+}
+
+.form_matricula .tarjeta_setter .top_setter .perfil p {
+  color: var(--texto-claro);
+}
+
+.form_matricula .tarjeta_setter .top_setter .perfil .button {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.form_matricula .tarjeta_setter .top_setter .perfil .button strong {
+  text-transform: uppercase;
+}
+
+.form_matricula .tarjeta_setter .top_setter .perfil .foto img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0px 0px 19px 0px rgba(255, 255, 255, 0.75);
+}
+
+.form_matricula .tarjeta_setter .info {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 60px;
+}
+
+.form_matricula .tarjeta_setter .info .nombre h4 {
+  font-size: 2em;
+  margin: 0;
+}
+
+.form_matricula .tarjeta_setter .info .nombre p {
+  margin: 0;
+  font-size: 1.2em;
+  margin-top: 8px;
+}
+
+.form_matricula .tarjeta_setter .info .matricula {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form_matricula .tarjeta_setter .info .matricula h4 {
+  width: 100%;
+  margin: 0;
+  font-size: 1.2em;
+  margin-top: 10px;
+}
+
+.form_matricula .tarjeta_setter .info .matricula .numero {
+  display: flex;
+  gap: 12px;
+}
+
+.form_matricula .tarjeta_setter .info .matricula .numero h2 {
+  margin: 0;
+  font-size: 2.2em;
+}
+
+.form_matricula .tarjeta_setter .info .matricula .numero button svg {
+  font-size: 1em;
+}
+
+@media (max-width: 720px) {
+
+  .matricula_user .container_matricula .form_matricula{
+    width: 100%;
+  }
+
+  .form_matricula .tarjeta_setter {
+    width: 90%;
+  }
+
+  .form_matricula .tarjeta_setter{
+    margin-bottom: 50px;
+  }
+  
+}
+
+@media screen and (max-width: 550px) {
+  .form_matricula .tarjeta_setter{
+    text-align: center;
+  }
+
+  .form_matricula .tarjeta_setter .top_setter {
+    flex-direction: column;
+  }
+  .form_matricula .tarjeta_setter .top_setter .perfil{
+    flex-direction: column;
+  }
+
+  .form_matricula .tarjeta_setter .top_setter .perfil .button h4{
+    margin: 0;
+  }
+
+  .form_matricula .tarjeta_setter .info{
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .form_matricula .tarjeta_setter .info .matricula .numero{
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+}
