@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Sidebar_a from "../../components/Admin/Sidebar/Sidebar_a";
-import List_setters from "../../components/Admin/Setters/List_setters";
+import List_setters from "../../components/Admin/Usuarios/List_users";
 
 const Setters = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);

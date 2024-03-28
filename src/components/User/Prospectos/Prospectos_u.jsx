@@ -277,15 +277,16 @@ const Prospectos_u = () => {
           "Los datos del prospecto han sido actualizados correctamente.",
           "success"
         );
-             // Actualizar el estado de prospectos después de la edición
-      const updatedProspects = prospectos.map((prospecto) =>
-      prospecto.id === prospectosDetails.id ? { ...prospecto, name, last_name: lastname, email } : prospecto
-    );
-    setProspectos(updatedProspects);
+        // Actualizar el estado de prospectos después de la edición
+        const updatedProspects = prospectos.map((prospecto) =>
+          prospecto.id === prospectosDetails.id
+            ? { ...prospecto, name, last_name: lastname, email }
+            : prospecto
+        );
+        setProspectos(updatedProspects);
 
-    // Cerrar el modal después de editar
-    closeModal();
-    
+        // Cerrar el modal después de editar
+        closeModal();
       } else {
         Swal.fire(
           "Error",
@@ -303,26 +304,26 @@ const Prospectos_u = () => {
     }
   };
 
-// Filtrar prospectos según los criterios seleccionados por el usuario
-let filteredProspects = prospectos.filter((prospecto) => {
-  return (
-    prospecto.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    prospecto.email.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-});
+  // Filtrar prospectos según los criterios seleccionados por el usuario
+  let filteredProspects = prospectos.filter((prospecto) => {
+    return (
+      prospecto.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      prospecto.email.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  });
 
-// Aplicar filtros adicionales si se seleccionan
-if (responseFilter !== "") {
-  filteredProspects = filteredProspects.filter(
-    (prospecto) => prospecto.response === responseFilter
-  );
-}
+  // Aplicar filtros adicionales si se seleccionan
+  if (responseFilter !== "") {
+    filteredProspects = filteredProspects.filter(
+      (prospecto) => prospecto.response === responseFilter
+    );
+  }
 
-if (scheduleFilter !== "") {
-  filteredProspects = filteredProspects.filter(
-    (prospecto) => prospecto.schedule === scheduleFilter
-  );
-}
+  if (scheduleFilter !== "") {
+    filteredProspects = filteredProspects.filter(
+      (prospecto) => prospecto.schedule === scheduleFilter
+    );
+  }
 
   return (
     <div className="prospectos">
@@ -392,7 +393,7 @@ if (scheduleFilter !== "") {
           </thead>
 
           <tbody>
-          {filteredProspects.map((prospecto, index) => (
+            {filteredProspects.map((prospecto, index) => (
               <tr key={index}>
                 <td data-label="Nº">{prospecto.id}</td>
                 <td data-label="Prospecto">

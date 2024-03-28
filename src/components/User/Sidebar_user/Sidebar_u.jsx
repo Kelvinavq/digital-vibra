@@ -8,6 +8,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import Config from "../../../config/Config"
 
 const menuItems = [
     {
@@ -37,14 +38,38 @@ const menuItems = [
       <span>Admin</span>
     </header>
   );
+
+  const handleLogout = async () => {
+    try {
+      const response = await fetch(`${Config.backendBaseUrl}logout.php`, {
+        method: "POST",
+        mode: "cors",
+        credentials: "include",
+      });
+  
+      if (response.ok) {
+        // Elimina la información de la sesión del almacenamiento local
+        sessionStorage.removeItem('user_role');
+        sessionStorage.removeItem('user_id');
+  
+        // Redirige al usuario a la página de inicio de sesión
+        window.location.href = '/login';
+      } else {
+        // Maneja errores si es necesario
+        console.error("Error al cerrar sesión");
+      }
+    } catch (error) {
+      console.error("Error al cerrar sesión:", error);
+    }
+  };
   
   const NavButton = ({ onClick, name, icon, isActive, hasSubNav, path }) => (
     <Link to={path}>
-      <button
-        type="button"
-        onClick={() => onClick(name)}
-        className={isActive ? "active" : ""}
-      >
+       <button
+      type="button"
+      onClick={name === "Cerrar Sesión" ? handleLogout : () => onClick(name)}
+      className={isActive ? "active" : ""}
+    >
         {icon && <Icon icon={icon} />}
         <span>{name}</span>
         {hasSubNav && (
@@ -85,6 +110,9 @@ const menuItems = [
       </div>
     );
   };
+
+
+
   
 
 const Sidebar_u = ({ isSidebarOpen, toggleSidebar }) => {

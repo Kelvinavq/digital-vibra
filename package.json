@@ -16,6 +16,7 @@
     "@mui/icons-material": "^5.15.10",
     "@mui/material": "^5.15.10",
     "apexcharts": "^3.46.0",
+    "axios": "^1.6.8",
     "gsap": "^3.12.5",
     "imagesloaded": "^5.0.0",
     "owl.carousel": "^2.3.4",
@@ -24,7 +25,8 @@
     "react-calendly": "^4.3.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.1",
-    "sweetalert2": "^11.10.5"
+    "sweetalert2": "^11.10.5",
+    "swiper": "^11.0.7"
   },
   "devDependencies": {
     "@types/react": "^18.2.56",

@@ -14,7 +14,8 @@ import Dashboard from "./pages/Admin/Dashboard";
 import Testimonials from "./pages/Admin/Testimonials";
 Testimonials
 import Portfolios from "./pages/Admin/Portfolios";
-import Setters from "./pages/Admin/Setters";
+import Setters from "./pages/Admin/Usuarios";
+import Prospectos_a from "./pages/Admin/Prospectos_a";
 
 // user
 import Dashboard_u from "./pages/User/Dashboard";
@@ -72,12 +73,16 @@ const router = createBrowserRouter([
     element: <Testimonials />,
   },
   {
-    path: "/admin/setters",
+    path: "/admin/usuarios",
     element: <Setters />,
   },
   {
     path: "/admin/portafolio",
     element: <Portfolios />,
+  },
+  {
+    path: "/admin/prospectos",
+    element: <Prospectos_a />,
   },
 ]);
 

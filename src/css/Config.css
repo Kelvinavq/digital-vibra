@@ -72,6 +72,12 @@ li{
   background: var(--terciario);
 }
 
+.swal2-confirm{
+  background: var(--primario) !important;
+}
+.swal2-file{
+  width: 95% !important;
+}
 
 /* Sections
      ========================================================================== */

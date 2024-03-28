@@ -1,0 +1,76 @@
+.container_prospectos .title{
+    margin-top: 50px;
+}
+
+.container_prospectos .tablas_prospectos{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 920px) {
+  .container_prospectos .tablas_prospectos{
+    grid-template-columns:  1fr;
+}
+}
+
+.tablas_prospectos .tabla {
+    margin-top: 30px;
+    background: var(--blanco-dos);
+    border-radius: 20px;
+  }
+  
+  .tablas_prospectos .tabla table {
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: separate;
+  }
+  
+  .tablas_prospectos .tabla table thead th {
+    color: var(--texto-claro);
+    font-weight: 400;
+    font-size: 0.9em;
+  }
+  
+  .tablas_prospectos .tabla table th,
+  .tablas_prospectos .tabla table td {
+    padding: 15px 0;
+    text-align: center;
+  }
+  
+  .tablas_prospectos .tabla table td.si span {
+    background: var(--success);
+    padding: 5px 10px;
+    border-radius: 8px;
+    color: var(--blanco);
+  }
+  
+  .tablas_prospectos .tabla table td.no span {
+    background: var(--danger);
+    padding: 5px 8px;
+    border-radius: 8px;
+    color: var(--blanco);
+  }
+  
+  .tablas_prospectos .tabla table td button svg {
+    color: var(--primario);
+  }
+  
+  .tablas_prospectos .tabla table th {
+    text-transform: capitalize;
+  }
+  
+  .tablas_prospectos .tabla table tbody tr {
+    color: var(--oscuro);
+    font-size: 0.9em;
+    cursor: pointer;
+  }
+  
+  .tablas_prospectos .tabla table tbody tr td {
+    text-transform: capitalize;
+  }
+  

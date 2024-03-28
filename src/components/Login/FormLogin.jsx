@@ -2,6 +2,7 @@ import "./Login.css";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import Config from "../../config/Config";
+import logo from "../../assets/images/Simple.png"
 
 const FormLogin = () => {
   const [formData, setFormData] = useState({
@@ -99,8 +100,12 @@ const FormLogin = () => {
   return (
     <div className="container login">
       <form className="box" onSubmit={handleLogin}>
+        <div className="logo">
+
+        <img src={logo} alt="" />
+        </div>
         <h4>
-          Vibra<span>Digital</span>
+          VIBRA<span>DIGITAL</span>
         </h4>
         <h5>Bienvenido a tu Agencia</h5>
         <input

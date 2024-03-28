@@ -30,10 +30,21 @@ body, html {
   box-shadow: 1px 1px 108.8px 19.2px rgba(240, 135, 36, 0.13);
 }
 
+.box .logo{
+  width: 100%;
+  display: grid;
+  place-items: center;
+  margin-bottom: -80px;
+  margin-top: 25px;
+}
+
+.box img{
+  max-width: 110px;
+}
 .box h4 {
   font-family: 'Source Sans Pro', sans-serif;
   color: var(--primario); 
-  font-size: 18px;
+  font-size: 28px;
   margin-top:94px;;
 }
 

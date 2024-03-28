@@ -25,7 +25,11 @@ const menuItems = [
     icon: <BusinessCenterIcon />,
   },
   {
-    name: "Setters",
+    name: "Usuarios",
+    icon: <BadgeIcon />,
+  },
+  {
+    name: "Prospectos",
     icon: <BadgeIcon />,
   },
   {
