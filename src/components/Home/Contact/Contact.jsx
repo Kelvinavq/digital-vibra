@@ -2,42 +2,66 @@ import React, { useEffect, useState } from "react";
 import "./Contact.css";
 import ParticlesBg from "particles-bg";
 import logo from "../../../assets/images/Simple-claro.png";
+import Config from "../../../config/Config";
+import Swal from "sweetalert2";
 
 const Contact = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const [form, setForm] = useState({
+    nombre: "",
+    telefono: "",
+    correo: "",
+    mensaje: "",
+  });
 
-    // Obtener los datos del formulario
-    const formData = new FormData(event.target);
-
-    // Convertir los datos a un objeto JSON
-    const formDataObject = {};
-    formData.forEach((value, key) => {
-      formDataObject[key] = value;
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
     });
+  };
 
-    // Realizar la solicitud fetch
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+
     try {
-      const response = await fetch("mail.php", {
+      const response = await fetch(`${Config.backendBaseUrl}contact.php`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formDataObject),
+        body: JSON.stringify(form),
+        mode: "cors",
+        credentials: "include",
       });
 
-      if (response.ok) {
-        // Manejar la respuesta exitosa, por ejemplo, mostrar un mensaje al usuario
-        console.log("Formulario enviado con éxito");
-      } else {
-        // Manejar errores de la solicitud
-        console.error("Error al enviar el formulario");
+      if (!response.ok) {
+        throw new Error("Hubo un problema al enviar el formulario");
       }
+
+      Swal.fire({
+        icon: "success",
+        title: "Formulario enviado",
+        text: "Gracias por contactarnos. Te responderemos lo antes posible.",
+        didClose: () => {
+          window.location = "/";
+        },
+      });
+
+      setForm({
+        nombre: "",
+        telefono: "",
+        correo: "",
+        mensaje: "",
+      });
     } catch (error) {
-      // Manejar errores de red u otros errores
-      console.error("Error en la solicitud fetch", error);
+      Swal.fire({
+        icon: "error",
+        title: "Error al enviar el formulario",
+        text: error.message,
+      });
     }
   };
 
@@ -71,7 +95,15 @@ const Contact = () => {
       >
         <div className="left">
           <div className="grupo-input">
-            <input type="text" placeholder="Nombre" id="nombre" name="nombre" />
+            <input
+              type="text"
+              placeholder="Nombre"
+              id="nombre"
+              name="nombre"
+              value={form.nombre}
+              onChange={handleChange}
+              required
+            />
           </div>
 
           <div className="inputs">
@@ -81,6 +113,8 @@ const Contact = () => {
                 placeholder="Teléfono"
                 id="telefono"
                 name="telefono"
+                value={form.telefono}
+                onChange={handleChange}
               />
             </div>
             <div className="grupo-input">
@@ -89,6 +123,9 @@ const Contact = () => {
                 placeholder="Correo electrónico"
                 id="correo"
                 name="correo"
+                value={form.correo}
+                onChange={handleChange}
+                required
               />
             </div>
           </div>
@@ -98,6 +135,9 @@ const Contact = () => {
               name="mensaje"
               id="mensaje"
               placeholder="Escriba su mensaje..."
+              value={form.mensaje}
+              onChange={handleChange}
+              required
             ></textarea>
           </div>
 
