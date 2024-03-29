@@ -6,7 +6,7 @@ const Advantages = () => {
     <div className="titulo">
       <h2 data-aos="fade-up">
         ¿Sabía las ventajas de contar con un
-        <strong data-aos="fade-up">sitio web bien diseñado?</strong>
+        <strong data-aos="fade-up"> sitio web bien diseñado?</strong>
       </h2>
       <p data-aos="fade-up">
         Nosotros nos encargamos de que su negocio gane prestigio digital para

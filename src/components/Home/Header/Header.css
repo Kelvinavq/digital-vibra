@@ -60,6 +60,7 @@ header {
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 100px;
     position: relative;
+    overflow: hidden;
   }
   
   header .right .img {

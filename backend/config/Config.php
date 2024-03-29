@@ -2,9 +2,9 @@
 
 function obtenerConexion() {
     $host = 'localhost';
-    $dbname = 'u211881118_vibra';
-    $username = 'u211881118_vibra';
-    $password = 'Vibradigital2023.';
+    $dbname = 'digitalvibra';
+    $username = 'root';
+    $password = '';
 
     try {
         $conexion = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);

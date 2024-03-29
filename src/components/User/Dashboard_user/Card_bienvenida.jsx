@@ -123,11 +123,14 @@ const Card_bienvenida = () => {
         );
 
         if (response.ok) {
-          Swal.fire(
-            "¡Registro exitoso!",
-            "El prospecto se ha registrado correctamente.",
-            "success"
-          );
+          Swal.fire({
+              title: "¡Registro exitoso!",
+              text: "El prospecto se ha registrado correctamente.",
+              icon: "success",
+              didClose: () =>{
+                window.location.reload();
+              }
+            });
         } else {
           Swal.fire(
             "Error",
@@ -154,7 +157,7 @@ const Card_bienvenida = () => {
       </div>
 
       <div className="button">
-        <button onClick={addProspect} >¡Registralo!</button>
+        <button onClick={addProspect}>¡Registralo!</button>
       </div>
     </div>
   );

@@ -105,7 +105,7 @@ const FormLogin = () => {
         <img src={logo} alt="" />
         </div>
         <h4>
-          VIBRA<span>DIGITAL</span>
+          VIBRA<span>Digital</span>
         </h4>
         <h5>Bienvenido a tu Agencia</h5>
         <input
