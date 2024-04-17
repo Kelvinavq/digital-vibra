@@ -12,7 +12,7 @@ try {
                      SUM(p.budget) AS total_budget 
               FROM projects p
               INNER JOIN teams t ON p.team = t.id
-              WHERE p.status = 'aprobado'
+              WHERE p.status = 'finalizado'
               GROUP BY t.name, MONTH(p.registered_date)
               ORDER BY t.name, MONTH(p.registered_date)";
 

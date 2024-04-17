@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import logo from "../../assets/images/Simple.png";
 import Config from "../../config/Config";
 
-const Tarjeta_Matricula = ({ matricula })  => {
+const Tarjeta_Matricula = ({ matricula }) => {
   const [userData, setUserData] = useState({});
 
   useEffect(() => {
@@ -35,35 +35,35 @@ const Tarjeta_Matricula = ({ matricula })  => {
           </p>
         </div>
         <div className="tarjeta_setter">
-          <div className="title">
-            <h4>Detalles del perfil</h4>
-          </div>
+          <div className="left"></div>
+          <div className="right">
+            <div className="nombre">
+              <div className="content">
+                <h2>{userData.name}</h2>
+                <p>{userData.email}</p>
+              </div>
 
-          <div className="top_setter">
-            <div className="perfil">
               <div className="foto">
                 <img
                   src={Config.imgProfileUser + userData.profile_picture}
                   alt=""
                 />
               </div>
+            </div>
 
-              <div className="button">
-                <h4>Perfil de <strong>{userData.role}</strong></h4>
+            <div className="info">
+              <div className="cargo">
+                <h4>Appointment Setter</h4>
               </div>
-            </div>
-          </div>
 
-          <div className="info">
-            <div className="nombre">
-              <h4>{userData.name}</h4>
-              <p>{userData.email}</p>
-            </div>
+              <div className="fecha">
+                <p>
+                  Pertenece a <strong>VibraDIGITAL</strong> desde {userData.registration_date}
+                </p>
+              </div>
 
-            <div className="matricula">
-              <h4>Matrícula</h4>
-              <div className="numero">
-                <h2>{userData.matricula}</h2>
+              <div className="matricula">
+                <h4>{userData.matricula}</h4>
               </div>
             </div>
           </div>

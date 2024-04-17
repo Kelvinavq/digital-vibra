@@ -1,45 +1,40 @@
 <?php
-include('../../config/Config.php');
-include('../../cors.php');
+include("../../cors.php");
+include("../../config/Config.php");
 
-// Obtener conexión a la base de datos
 $conexion = obtenerConexion();
 
-session_start();
-if (!isset($_SESSION['user_id'])) {
-    http_response_code(401); // Unauthorized
-    echo json_encode(array("error" => "No hay una sesión activa."));
-    exit();
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    try {
+        $userId = isset($_GET['id_setter']) ? $_GET['id_setter'] : null;
+
+        // Construir la consulta SQL para obtener los prospectos
+        $query = "SELECT p.*, u.name AS user_name, COUNT(pr.id) AS project_count 
+                  FROM prospects p 
+                  LEFT JOIN users u ON p.id_setter = u.id 
+                  LEFT JOIN projects pr ON p.id = pr.id_prospect";
+        if ($userId) {
+            $query .= " WHERE p.id_setter = :userId";
+        }
+        $query .= " GROUP BY p.id"; // Agrupar por ID de prospecto para contar proyectos
+
+        $stmt = $conexion->prepare($query);
+
+        if ($userId) {
+            $stmt->bindParam(':userId', $userId);
+        }
+
+        $stmt->execute();
+        $prospectos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Enviar la respuesta como JSON
+        http_response_code(200);
+        echo json_encode($prospectos);
+    } catch (Exception $e) {
+        // Log de la excepción
+        error_log("Excepción al obtener prospectos: " . $e->getMessage());
+        http_response_code(500);
+        echo json_encode(array("message" => "Error al obtener prospectos."));
+    }
 }
-
-if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
-    http_response_code(405); // Method Not Allowed
-    echo json_encode(array("error" => "Método no permitido."));
-    exit();
-}
-
-$user_id = isset($_GET['id']) ? intval($_GET['id']) : null;
-
-if ($user_id === null) {
-    http_response_code(400); // Bad Request
-    echo json_encode(array("error" => "ID de usuario no válido."));
-    exit();
-}
-
-try {
-
-    $query = "SELECT p.*, u.team 
-    FROM prospects p 
-    INNER JOIN users u ON p.id_setter = u.id 
-    WHERE p.id_setter = :user_id";
-    $stmt = $conexion->prepare($query);
-    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-    $stmt->execute();
-    $ListaProspectos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    http_response_code(200); // OK
-    echo json_encode($ListaProspectos);
-} catch (PDOException $e) {
-    http_response_code(500); // Internal Server Error
-    echo json_encode(array("error" => "Error al obtener los detalles del prospecto.", "details" => $e->getMessage()));
-}
+?>

@@ -80,6 +80,7 @@ const Contact = () => {
   const particleNum = windowWidth < 560 ? 30 : 40;
 
   return (
+    <div className="container_home">
     <section id="contacto" className="contacto">
       <div className="titulo">
         <h2 data-aos="fade-up">
@@ -154,6 +155,7 @@ const Contact = () => {
         </div>
       </form>
     </section>
+    </div>
   );
 };
 

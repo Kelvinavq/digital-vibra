@@ -1,24 +1,11 @@
 import { useState, useEffect } from "react";
+import Slider from "react-slick";
+import Config from "../../../config/Config";
+import img from "../../../assets/images/FondoHeader.jpg";
 import "./Portfolio.css";
-import Config from "../../../config/Config.jsx";
-import {
-  Navigation,
-  Pagination,
-  Scrollbar,
-  A11y,
-  EffectCoverflow,
-} from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/effect-coverflow";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import img from "../../../../backend/public/portfolio/66038025033d2_lfi.jpeg";
 
 const Portfolio = () => {
   const [proyectos, setProyectos] = useState([]);
-  const [dataLoaded, setDataLoaded] = useState(false);
-
   useEffect(() => {
     fetch(`${Config.backendBaseUrlHome}get_projects.php`)
       .then((response) => {
@@ -41,50 +28,62 @@ const Portfolio = () => {
       });
   }, []);
 
-  return (
-    <section id="portafolio" className="portafolio" data-aos="fade-up">
-      <Swiper
-        effect={"coverflow"}
-        grabCursor={true}
-        centeredSlides={true}
-        loop={true}
-        slidesPerView={"5"}
-        coverflowEffect={{
-          rotate: 0,
-          stretch: 0,
-          depth: 100,
-          modifier: 2.5,
-        }}
-        pagination={{ el: ".swiper-pagination", clickable: true }}
-        navigation={{
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-          clickable: true,
-        }}
-        modules={[EffectCoverflow, Pagination, Navigation]}
-        className="swiper_container"
-        breakpoints={{
-          1920: {
-            slidesPerView: "5",
-          },
-          720: {
-            slidesPerView: "3",
-          },
-          620: {
-            slidesPerView: "1",
-          },
-        }}
-      >
-        <div className="swiper-button-prev slider-arrow"></div>
-        <div className="swiper-button-next slider-arrow"></div>
+  const handleImageClick = (link) => {
+    window.open(link, '_blank');
+  };
 
-        {proyectos.map((proyecto, index) => (
-          <SwiperSlide>
-            <img src={Config.imgPortfolio + proyecto.image_portrait} alt="slide_image" />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </section>
+
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 600,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    centerMode: true,
+    adaptiveHeight: true,
+    adaptiveWidth: true,
+    lazyLoad: true,
+    responsive: [
+      {
+        breakpoint: 1100,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+          centerMode: true,
+        },
+      },
+      {
+        breakpoint: 720,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 0,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 0,
+        },
+      },
+    ],
+  };
+  return (
+    <Slider {...settings}>
+      {proyectos.map((proyecto, index) => (
+        <div key={index} onClick={() => handleImageClick(proyecto.link)}>
+          <img
+            src={Config.imgPortfolio + proyecto.image_portrait}
+            alt="slide_image"
+          />
+        </div>
+      ))}
+    </Slider>
   );
 };
 

@@ -31,7 +31,7 @@ try {
     $matricula = substr($matricula, 0, 3) . ' - ' . substr($matricula, 3, 3);
 
     // Realizar la consulta SQL para obtener los datos de usuario
-    $consulta = "SELECT u.name, u.email, u.role, u.profile_picture, si.matricula
+    $consulta = "SELECT u.name, u.email, u.role, u.profile_picture, u.registration_date, si.matricula
     FROM users u
     INNER JOIN setter_info si ON u.id = si.user_id
     WHERE si.matricula = :matricula";

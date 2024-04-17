@@ -14,3 +14,4 @@ function obtenerConexion() {
         echo "Error de conexión: " . $e->getMessage();
     }
 }
+?>

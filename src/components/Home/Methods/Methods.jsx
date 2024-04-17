@@ -2,6 +2,8 @@ import "./Methods.css";
 
 const Methods = () => {
   return (
+    <div className="container_home">
+      
     <section className="metodos">
       <div className="titulo">
         <h2 className="" data-aos="fade-up">
@@ -37,6 +39,7 @@ const Methods = () => {
         </div>
       </div>
     </section>
+    </div>
   );
 };
 

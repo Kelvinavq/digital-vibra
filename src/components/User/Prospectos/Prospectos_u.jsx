@@ -2,6 +2,8 @@ import "./Prospectos.css";
 import SearchIcon from "@mui/icons-material/Search";
 import EditIcon from "@mui/icons-material/Edit";
 import CloseIcon from "@mui/icons-material/Close";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+
 import { useEffect, useState, useRef } from "react";
 import Swal from "sweetalert2";
 import Config from "../../../config/Config";
@@ -325,6 +327,10 @@ const Prospectos_u = () => {
     );
   }
 
+  const redirectToProjects = (userId) => {
+    window.location = `/user/proyectos?prospecto=${userId}`;
+  };
+
   return (
     <div className="prospectos">
       <div className="title">
@@ -389,6 +395,7 @@ const Prospectos_u = () => {
               <th scope="col">¿Respondió?</th>
               <th scope="col">¿Agendó?</th>
               <th scope="col"></th>
+              <th scope="col"></th>
             </tr>
           </thead>
 
@@ -405,7 +412,12 @@ const Prospectos_u = () => {
                 <td data-label="¿Agendó?" className={prospecto.schedule}>
                   <span>{prospecto.schedule}</span>
                 </td>
-                <td data-label="">
+                <td data-label="Ver proyectos">
+                  <button onClick={() => redirectToProjects(prospecto.id)}>
+                    <VisibilityIcon />
+                  </button>
+                </td>
+                <td data-label="Editar">
                   <button onClick={() => editProspect(prospecto)}>
                     <EditIcon />
                   </button>

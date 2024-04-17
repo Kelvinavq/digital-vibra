@@ -355,6 +355,7 @@ const Estadisticas = () => {
   });
 
   const [showChart, setShowChart] = useState(true);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -410,13 +411,6 @@ const Estadisticas = () => {
           throw new Error("Error al obtener el total de mensajes enviados");
         }
 
-        const totalMensajesEnviados = await responseTotalMensajes.json();
-        // Actualizar el gráfico radial-bar-chart con el total de mensajes enviados
-        setRadialBarChartData((prevData) => ({
-          ...prevData,
-          series: [totalMensajesEnviados.total_mensajes_enviados],
-        }));
-
         // Fetch para obtener el total de mensajes respondidos
         const responseTotalMensajesRespondidos = await fetch(
           `${Config.backendBaseUrlUser}get_total_mensajes_respondidos.php`,
@@ -470,6 +464,21 @@ const Estadisticas = () => {
         setRadialBarChartData4((prevData) => ({
           ...prevData,
           series: [valorRadialBarChart4],
+        }));
+
+        const totalMensajesEnviados = await responseTotalMensajes.json();
+        // Actualizar el gráfico radial-bar-chart con el total de mensajes enviados
+
+        // Calcular el porcentaje de mensajes respondidos sobre el total de mensajes enviados
+        const porcentajeEnviados =
+          (totalMensajesRespondidos.total_mensajes_respondidos /
+          totalMensajesEnviados.total_mensajes_enviados) *
+          100;
+
+
+        setRadialBarChartData((prevData) => ({
+          ...prevData,
+          series: [porcentajeEnviados],
         }));
       } catch (error) {
         console.error("Error en la solicitud fetch:", error);

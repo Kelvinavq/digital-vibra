@@ -1,0 +1,174 @@
+.contenedor_prospectos_publicidad{
+    display: flex;
+    justify-content: center;
+}
+
+.tabla_prospectos_publicidad{
+ 
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+.tabla_prospectos_publicidad .title{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tabla_prospectos_publicidad .title .buttons{
+  display: flex;
+  gap: 15px;
+}
+
+.tabla_prospectos_publicidad .title button{
+  background: var(--gris);
+  padding: 10px 15px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all .5s;
+}
+
+.tabla_prospectos_publicidad .title button.active{
+  background: var(--primario);
+  color: var(--white);
+}
+
+.tabla_prospectos_publicidad .title .buttons button:last-child{
+  background: var(--oscuro);
+  color: var(--white);
+}
+
+.tabla_prospectos_publicidad .tabla {
+    margin-top: 30px;
+    background: var(--blanco-dos);
+    border-radius: 20px;
+  }
+  
+  .tabla_prospectos_publicidad .tabla table {
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+  }
+  
+  .tabla_prospectos_publicidad .tabla table thead th {
+    color: var(--texto-claro);
+    font-weight: 400;
+    font-size: 0.9em;
+  }
+  
+  .tabla_prospectos_publicidad .tabla table th,
+  .tabla_prospectos_publicidad .tabla table td {
+    padding: 15px 0;
+    text-align: center;
+  }
+  
+  .tabla_prospectos_publicidad .tabla table td.si span {
+    background: var(--success);
+    padding: 5px 10px;
+    border-radius: 8px;
+    color: var(--blanco);
+  }
+  
+  .tabla_prospectos_publicidad .tabla table td.no span {
+    background: var(--danger);
+    padding: 5px 8px;
+    border-radius: 8px;
+    color: var(--blanco);
+  }
+  
+  .tabla_prospectos_publicidad .tabla table td button svg {
+    color: var(--primario);
+  }
+  
+  .tabla_prospectos_publicidad .tabla table th {
+    text-transform: capitalize;
+  }
+  
+  .tabla_prospectos_publicidad .tabla table tbody tr {
+    color: var(--oscuro);
+    font-size: 0.9em;
+    cursor: pointer;
+  }
+
+  
+
+  .tabla_prospectos_publicidad .tabla table tbody tr.active{
+    background: var(--primario);
+    color: var(--white);
+  }
+  
+  .tabla_prospectos_publicidad .tabla table tbody tr td {
+    text-transform: capitalize;
+  }
+
+  .tabla_prospectos_publicidad .tabla table tbody tr td span{
+    background: var(--danger);
+    padding: 2px 5px;
+    color: var(--white);
+    font-size: .9em;
+    border-radius: 5px;
+  }
+
+
+
+  .tabla_prospectos_publicidad .tabla table tbody tr td.buttons button{
+    width: 100%;
+    display: flex;   
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+  }
+
+  
+@media screen and (max-width: 924px) {
+
+.tabla_prospectos_publicidad .title {
+  flex-direction: column;
+  align-items: start;
+}
+  .tabla_prospectos_publicidad .tabla table {
+    border: 0;
+  }
+  .tabla_prospectos_publicidad .tabla table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+
+  .tabla_prospectos_publicidad .tabla table tr {
+    display: block;
+    margin-bottom: 0.625em;
+    border-bottom: 2px solid var(--oscuro);
+  }
+
+  .tabla_prospectos_publicidad .tabla table td {
+    display: block;
+    font-size: 0.8em;
+    text-align: right;
+    border-radius: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+
+  .tabla_prospectos_publicidad .tabla table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+}

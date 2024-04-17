@@ -8,6 +8,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import WorkspacesIcon from "@mui/icons-material/Workspaces";
 import Config from "../../../config/Config";
 
 const menuItems = [
@@ -21,9 +22,14 @@ const menuItems = [
     // items: ["Display", "Editor", "Theme", "Interface"],
   },
   {
+    name: "Proyectos",
+    icon: <WorkspacesIcon />,
+  },
+  {
     name: "Ajustes",
     icon: <SettingsIcon />,
   },
+
   {
     name: "Cerrar Sesión",
     icon: <LogoutIcon />,

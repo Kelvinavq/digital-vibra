@@ -1,76 +1,322 @@
-.container_prospectos .title{
-    margin-top: 50px;
+.container_prospectos_a {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
 }
 
-.container_prospectos .tablas_prospectos{
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-
-@media (max-width: 920px) {
-  .container_prospectos .tablas_prospectos{
-    grid-template-columns:  1fr;
-}
+.container_prospectos .tablas_prospectos {
+  width: 100%;
+  gap: 20px;
 }
 
 .tablas_prospectos .tabla {
-    margin-top: 30px;
-    background: var(--blanco-dos);
-    border-radius: 20px;
-  }
-  
+  margin-top: 30px;
+  background: var(--blanco-dos);
+  border-radius: 20px;
+}
+
+.tablas_prospectos .tabla table {
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+}
+
+.tablas_prospectos .tabla table thead th {
+  color: var(--texto-claro);
+  font-weight: 400;
+  font-size: 0.9em;
+}
+
+.tablas_prospectos .tabla table th,
+.tablas_prospectos .tabla table td {
+  padding: 15px 0;
+  text-align: center;
+}
+
+.tablas_prospectos .tabla table td.si span {
+  background: var(--success);
+  padding: 5px 10px;
+  border-radius: 8px;
+  color: var(--blanco);
+}
+
+.tablas_prospectos .tabla table td.no span {
+  background: var(--danger);
+  padding: 5px 8px;
+  border-radius: 8px;
+  color: var(--blanco);
+}
+
+.tablas_prospectos .tabla table td button svg {
+  color: var(--primario);
+}
+
+.tablas_prospectos .tabla table th {
+  text-transform: capitalize;
+}
+
+.tablas_prospectos .tabla table tbody tr {
+  color: var(--oscuro);
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+.tablas_prospectos .tabla table tbody tr td {
+  text-transform: capitalize;
+}
+
+.tablas_prospectos .tabla table tbody tr td.buttons button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+@media screen and (max-width: 924px) {
   .tablas_prospectos .tabla table {
-    border-collapse: collapse;
-    margin: 0;
+    border: 0;
+  }
+  .tablas_prospectos .tabla table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
     padding: 0;
-    width: 100%;
-    table-layout: fixed;
-    border-collapse: separate;
+    position: absolute;
+    width: 1px;
   }
-  
-  .tablas_prospectos .tabla table thead th {
-    color: var(--texto-claro);
-    font-weight: 400;
-    font-size: 0.9em;
+
+  .tablas_prospectos .tabla table tr {
+    display: block;
+    margin-bottom: 0.625em;
   }
-  
-  .tablas_prospectos .tabla table th,
+
   .tablas_prospectos .tabla table td {
-    padding: 15px 0;
-    text-align: center;
+    display: block;
+    font-size: 0.8em;
+    text-align: right;
+    border-radius: 0;
+    padding-left: 10px;
+    padding-right: 10px;
   }
-  
-  .tablas_prospectos .tabla table td.si span {
-    background: var(--success);
-    padding: 5px 10px;
-    border-radius: 8px;
-    color: var(--blanco);
+
+  .tablas_prospectos .tabla table tbody tr td.buttons button {
+    justify-content: end;
   }
-  
-  .tablas_prospectos .tabla table td.no span {
-    background: var(--danger);
-    padding: 5px 8px;
-    border-radius: 8px;
-    color: var(--blanco);
+
+  .tablas_prospectos .tabla table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
   }
-  
-  .tablas_prospectos .tabla table td button svg {
-    color: var(--primario);
+}
+
+/* modal */
+
+.container_prospectos .modal-overlay {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  background: #00000048;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9;
+}
+
+.container_prospectos .modal-overlay .modal {
+  width: 720px;
+  max-width: 90%;
+  background: var(--blanco);
+  padding: 20px;
+  border-radius: 20px;
+  position: relative;
+  animation: animate 0.4s ease;
+  max-height: 620px;
+  overflow-y: auto;
+}
+
+.container_prospectos .modal-overlay .modal .close-modal {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: var(--gris);
+  transition: all 0.4s;
+}
+
+.container_prospectos .modal-overlay .modal .close-modal:hover svg {
+  color: var(--primario);
+}
+
+.container_prospectos .modal .content-modal {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+.container_prospectos .modal .content-modal .input input,
+.container_prospectos .modal .content-modal .input textarea,
+.container_prospectos .modal .content-modal .input select {
+  box-sizing: border-box;
+  width: 100%;
+  height: 2.625em;
+  padding: 0 0.75em;
+  transition: border-color 0.1s, box-shadow 0.1s;
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.06), 0 0 0 3px rgba(0, 0, 0, 0);
+  color: inherit;
+  font-size: 1.125em;
+}
+
+.container_prospectos .modal .content-modal .input textarea {
+  height: 120px;
+  padding-top: 10px;
+  outline: none;
+  margin: 10px 0;
+}
+
+.container_prospectos .modal .content-modal .right {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.container_prospectos .modal .content-modal .right .inputs {
+  width: 100%;
+  display: flex;
+  gap: 25px;
+}
+
+.container_prospectos .modal .content-modal .right .input {
+  width: 100%;
+  margin-left: 15px;
+}
+
+.container_prospectos .modal .content-modal .right .input p {
+  margin: 0;
+}
+
+.container_prospectos .modal .content-modal .switch {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 3.5em;
+  height: 25px;
+  margin-top: 12px;
+}
+
+/* Hide default HTML checkbox */
+.container_prospectos .modal .content-modal .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.container_prospectos .modal .content-modal .slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: var(--gris);
+  border-radius: 50px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.container_prospectos .modal .content-modal .slider:before {
+  position: absolute;
+  content: "";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+  width: 25px;
+  inset: 0;
+  background-color: white;
+  border-radius: 50px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.233);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.container_prospectos .modal .content-modal .switch input:checked + .slider {
+  background: var(--success);
+}
+
+.container_prospectos
+  .modal
+  .content-modal
+  .switch
+  input:checked
+  + .slider:before {
+  transform: translateX(1.9em);
+}
+
+.container_prospectos .modal .content-modal .right .input button {
+  width: 95%;
+  background: var(--oscuro);
+  border-radius: 12px;
+  text-align: center;
+  height: 45px;
+  padding: 0;
+  color: var(--blanco);
+  cursor: pointer;
+  margin: 18px 0;
+  transition: all 0.3s;
+}
+.container_prospectos .modal .content-modal .right .input button:hover {
+  background: var(--oscuro-dos);
+}
+.container_prospectos .modal .content-modal .right .input .update {
+  background: var(--primario);
+}
+
+.container_prospectos .modal .content-modal .right .input .update:hover {
+  background: var(--secundario);
+}
+
+.container_prospectos .modal .content-modal .right .input input {
+  width: 95%;
+  margin: 10px 0;
+}
+
+@media (max-width: 620px) {
+  .container_prospectos .modal .content-modal {
+    grid-template-columns: 1fr;
   }
-  
-  .tablas_prospectos .tabla table th {
-    text-transform: capitalize;
+  .container_prospectos .modal .content-modal .right .input button {
+    width: 97%;
   }
-  
-  .tablas_prospectos .tabla table tbody tr {
-    color: var(--oscuro);
-    font-size: 0.9em;
-    cursor: pointer;
+  .container_prospectos .modal-overlay .modal {
+    max-height: 450px;
+    overflow-y: auto;
   }
-  
-  .tablas_prospectos .tabla table tbody tr td {
-    text-transform: capitalize;
+}
+
+@keyframes animate {
+  0% {
+    transform: scale(0.7);
   }
-  
+  45% {
+    transform: scale(1.05);
+  }
+  80% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

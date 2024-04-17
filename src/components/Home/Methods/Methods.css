@@ -26,7 +26,7 @@
     gap: 20px;
   }
   
-  .tarjeta span {
+  .metodo .tarjeta span {
     font-size: 17px;
     font-weight: 400;
     line-height: 20px;
@@ -52,7 +52,7 @@
     border-radius: 0 4px 0 32px;
   }
   
-  .tarjeta {
+    .metodo .tarjeta {
     display: flex;
     position: relative;
     flex-direction: column;
@@ -69,7 +69,7 @@
     cursor: pointer;
   }
   
-  .tarjeta i {
+    .metodo .tarjeta i {
     font-size: 30px;
     animation: fluido 10s ease-in-out infinite;
     background: linear-gradient(-45deg, #ff9702, #e73c7e, #23a6d5, #fe914e);
@@ -80,7 +80,7 @@
     filter: drop-shadow(3px 0px 2px #00000056);
   }
   
-  .tarjeta:before {
+    .metodo .tarjeta:before {
     content: "";
     position: absolute;
     z-index: -1;
@@ -95,7 +95,7 @@
     transition: transform 0.25s ease-out;
   }
   
-  .tarjeta:hover:before {
+    .metodo .tarjeta:hover:before {
     transform: scale(21);
   }
   
@@ -104,7 +104,7 @@
       grid-template-columns: 1fr 1fr;
     }
   
-    .tarjeta {
+      .metodo .tarjeta {
       max-width: 220px;
     }
   }

@@ -9,6 +9,14 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import BadgeIcon from '@mui/icons-material/Badge';
+import WorkspacesIcon from '@mui/icons-material/Workspaces';
+import PersonIcon from '@mui/icons-material/Person';
+import AdsClickIcon from '@mui/icons-material/AdsClick';
+import Groups2Icon from '@mui/icons-material/Groups2';
+import Diversity2Icon from '@mui/icons-material/Diversity2';
+import PaymentsIcon from '@mui/icons-material/Payments';
+import ReceiptIcon from '@mui/icons-material/Receipt';
+import Config from "../../../config/Config";
 
 const menuItems = [
   {
@@ -26,11 +34,32 @@ const menuItems = [
   },
   {
     name: "Usuarios",
-    icon: <BadgeIcon />,
+    icon: <PersonIcon />,
   },
   {
     name: "Prospectos",
-    icon: <BadgeIcon />,
+    icon: <Groups2Icon />,
+  },
+  {
+    name: "Prospectos Publicidad",
+    icon: <AdsClickIcon />,
+  },
+  
+  {
+    name: "Proyectos",
+    icon: <WorkspacesIcon />,
+  },
+  {
+    name: "Equipos",
+    icon: <Diversity2Icon />,
+  },
+  {
+    name: "Pagos",
+    icon: <PaymentsIcon />,
+  },
+  {
+    name: "Historial Pagos",
+    icon: <ReceiptIcon />,
   },
   {
     name: "Cerrar Sesión",
@@ -40,6 +69,8 @@ const menuItems = [
 
 const Icon = ({ icon }) => icon;
 
+
+
 const NavHeader = () => (
   <header className="sidebar-header">
     <img src={logo} alt="" />
@@ -47,11 +78,35 @@ const NavHeader = () => (
   </header>
 );
 
+const handleLogout = async () => {
+  try {
+    const response = await fetch(`${Config.backendBaseUrl}logout.php`, {
+      method: "POST",
+      mode: "cors",
+      credentials: "include",
+    });
+
+    if (response.ok) {
+      // Elimina la información de la sesión del almacenamiento local
+      sessionStorage.removeItem("user_role");
+      sessionStorage.removeItem("user_id");
+
+      // Redirige al usuario a la página de inicio de sesión
+      window.location.href = "/login";
+    } else {
+      // Maneja errores si es necesario
+      console.error("Error al cerrar sesión");
+    }
+  } catch (error) {
+    console.error("Error al cerrar sesión:", error);
+  }
+};
+
 const NavButton = ({ onClick, name, icon, isActive, hasSubNav, path }) => (
   <Link to={path}>
     <button
       type="button"
-      onClick={() => onClick(name)}
+      onClick={name === "Cerrar Sesión" ? handleLogout : () => onClick(name)}
       className={isActive ? "active" : ""}
     >
       {icon && <Icon icon={icon} />}
@@ -103,6 +158,10 @@ const Sidebar_a = ({ isSidebarOpen, toggleSidebar }) => {
     setActiveItem(item !== activeItem ? item : "");
   };
 
+  const formatLink = (name) => {
+    return name.toLowerCase().replace(/\s+/g, '-');
+  };
+
   return (
     <>
       <aside className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
@@ -121,7 +180,7 @@ const Sidebar_a = ({ isSidebarOpen, toggleSidebar }) => {
                 icon={item.icon}
                 isActive={activeItem === item.name}
                 hasSubNav={!!item.items}
-                path={`/admin/${item.name.toLowerCase()}`}
+                path={`/admin/${formatLink(item.name)}`}
               />
             )}
             {item.items && (
@@ -132,7 +191,7 @@ const Sidebar_a = ({ isSidebarOpen, toggleSidebar }) => {
                   icon={item.icon}
                   isActive={activeItem === item.name}
                   hasSubNav={!!item.items}
-                  path={`/admin/${item.name.toLowerCase()}`}
+                  path={`/admin/${formatLink(item.name)}`}
                 />
                 <SubMenu
                   activeItem={activeItem}

@@ -41,7 +41,8 @@ const FormLogin = () => {
     }
     return true;
   };
-
+ 
+  
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -52,39 +53,43 @@ const FormLogin = () => {
 
     // Enviar datos al servidor
     try {
-      const response = await fetch(
-        `${Config.backendBaseUrl}Login.php`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: formData.email,
-            password: formData.password,
-          }),
-          mode: "cors",
-          credentials: "include",
-        }
-      );
+      const response = await fetch(`${Config.backendBaseUrl}Login.php`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+        }),
+        mode: "cors",
+        credentials: "include",
+      });
 
       const responseData = await response.json();
 
       if (response.ok) {
-
         localStorage.setItem("user_role", responseData.user_role);
         localStorage.setItem("user_id", responseData.user_id);
 
-        if (responseData.user_role === "admin") {
-          window.location.href = "/admin/dashboard";
+        if (responseData.user_status === "inactive") {
+          Swal.fire({
+            icon: "warning",
+            title: "Cuenta suspendida",
+            text: "Su cuenta está suspendida. Por favor, contacte al administrador.",
+          });
         } else {
-          window.location.href = "/user/dashboard";
+          if (responseData.user_role === "admin") {
+            window.location.href = "/admin/dashboard";
+          } else {
+            window.location.href = "/user/dashboard";
+          }
         }
       } else {
         Swal.fire({
           icon: "error",
           title: "Error",
-          text: responseData.message || "Correo o contraseña inválidos",
+          text: responseData.error || "Correo o contraseña inválidos",
         });
       }
     } catch (error) {
@@ -96,6 +101,8 @@ const FormLogin = () => {
       });
     }
   };
+
+
 
   return (
     <div className="container login">

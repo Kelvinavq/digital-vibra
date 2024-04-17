@@ -27,7 +27,7 @@ try {
     $query = "SELECT t.id, t.name, IFNULL(SUM(p.budget), 0) as total_income
               FROM teams t
               LEFT JOIN users u ON t.id = u.team
-              LEFT JOIN projects p ON u.id = p.id_setter AND p.status = 'aprobado' AND MONTH(p.registered_date) = MONTH(CURRENT_DATE()) AND YEAR(p.registered_date) = YEAR(CURRENT_DATE())
+              LEFT JOIN projects p ON u.id = p.id_setter AND p.status = 'finalizado' AND MONTH(p.registered_date) = MONTH(CURRENT_DATE()) AND YEAR(p.registered_date) = YEAR(CURRENT_DATE())
               GROUP BY t.id, t.name
               ORDER BY total_income DESC";
     $stmt = $conexion->prepare($query);

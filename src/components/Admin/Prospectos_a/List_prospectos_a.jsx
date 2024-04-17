@@ -1,109 +1,129 @@
 import "./Prospectos_a.css";
 import React, { useState, useEffect, useRef } from "react";
-import Config from "../../../config/Config";
-import EditIcon from "@mui/icons-material/Edit";
-import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-import CloseIcon from "@mui/icons-material/Close";
-import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
-import AddIcon from "@mui/icons-material/Add";
+import { useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
+import Config from "../../../config/Config";
+
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import EditIcon from "@mui/icons-material/Edit";
+import CloseIcon from "@mui/icons-material/Close";
 
 const List_prospectos_a = () => {
-  const [ListProspects, setListProspects] = useState([]);
-  const [selectedProspectProjects, setSelectedProspectProjects] = useState([]);
-  const [setterList, setSetterList] = useState([]);
-  const [projectToEdit, setProjectToEdit] = useState(null);
+  const [prospectos, setProspectos] = useState([]);
+  const location = useLocation();
+  const userId = new URLSearchParams(location.search).get("id");
+  const [nombreSetter, setNombreSetter] = useState("");
 
   useEffect(() => {
-    const getProspects = async () => {
+    const fetchProspectos = async () => {
       try {
-        const response = await fetch(
-          `${Config.backendBaseUrlAdmin}get_list_prospects.php`,
-          {
-            method: "GET",
-            credentials: "include",
+        let url = `${Config.backendBaseUrlAdmin}get_prospects.php`;
+        if (userId) {
+          url += `?id_setter=${userId}`;
+          // Si se proporciona el ID del setter en la URL, obtener su nombre
+          const responseSetter = await fetch(
+            `${Config.backendBaseUrlAdmin}get_user_details.php?id=${userId}`,
+            {
+              method: "GET",
+              credentials: "include",
+            }
+          );
+          if (responseSetter.ok) {
+            const dataSetter = await responseSetter.json();
+            setNombreSetter(dataSetter.name);
           }
-        );
+        }
 
-        const ListaProspectos = await response.json();
+        const responseProspectos = await fetch(url, {
+          method: "GET",
+          mode: "cors",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
 
-        if (!response.ok) {
-          console.error("Error al obtener lista de prospectos");
-          Swal.fire({
-            title: "Error al obtener lista de prospectos",
-            text: "Hubo un error al obtener la lista de prospectos",
-            icon: "error",
-          });
-          return;
+        if (responseProspectos.ok) {
+          const dataProspectos = await responseProspectos.json();
+          setProspectos(dataProspectos);
         } else {
-          setListProspects(ListaProspectos);
-        }
-      } catch (error) {
-        console.error("Error al manejar la solicitud de detalles:", error);
-        Swal.fire({
-          title: "Error",
-          text: "Error inesperado al manejar la solicitud de detalles",
-          icon: "error",
-        });
-      }
-    };
-
-    const getSetters = async () => {
-      try {
-        const response = await fetch(
-          `${Config.backendBaseUrlAdmin}get_setters.php`,
-          {
-            method: "GET",
-            credentials: "include",
-          }
-        );
-
-        if (!response.ok) {
-          console.error("Error al obtener lista de setters");
+          // Manejar el caso de error
           Swal.fire({
-            title: "Error al obtener lista de setters",
-            text: "Hubo un error al obtener la lista de setters",
             icon: "error",
+            title: "Error al obtener prospectos",
+            text: "Hubo un error al obtener los prospectos.",
           });
-          return;
         }
-
-        const setterData = await response.json();
-        setSetterList(setterData);
       } catch (error) {
-        console.error("Error al manejar la solicitud de detalles:", error);
+        console.error("Error al obtener prospectos:", error);
         Swal.fire({
-          title: "Error",
-          text: "Error inesperado al manejar la solicitud de detalles",
           icon: "error",
+          title: "Error al obtener prospectos",
+          text: "Hubo un error al obtener los prospectos.",
         });
       }
     };
 
-    getSetters();
-    getProspects();
-  }, []);
+    fetchProspectos();
+  }, [userId]);
 
-  const getProspectProjects = async (idProspect) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [prospectosDetails, setProspectosDetails] = useState("");
+
+  const [name, setName] = useState("");
+  const [lastname, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [note, setNote] = useState("");
+  const [contactInfo, setContactInfo] = useState("");
+  const [responseCheck, setResponseCheck] = useState(false);
+  const [schedule, setSchedule] = useState(false);
+  const [meetDate, setMeetDate] = useState("");
+  const [meetTime, setMeetTime] = useState("");
+  const [socialLink, setSocialLink] = useState("");
+
+  const abrirCalendly = () => {
+    window.open(
+      "https://calendly.com/vibradigital/reunion-nahuel-veliz",
+      "_blank"
+    );
+    return false;
+  };
+
+  const editProspect = async (prospecto) => {
+    setIsModalOpen(true);
+
     try {
       const response = await fetch(
-        `${Config.backendBaseUrlAdmin}get_prospect_projects.php?id_prospect=${idProspect}`,
+        `${Config.backendBaseUrlUser}get_prospect_detail.php?id=${prospecto.id}`,
         {
           method: "GET",
           credentials: "include",
         }
       );
 
-      if (response.ok) {
-        const prospectProjects = await response.json();
-        setSelectedProspectProjects(prospectProjects);
-      } else {
-        console.error("Error al obtener proyectos del prospecto");
+      const prospectDetails = await response.json();
+
+      if (!response.ok) {
+        console.error("Error al obtener detalles del prospecto");
         Swal.fire({
-          title: "Error al obtener proyectos del prospecto",
-          text: "Hubo un error al obtener los proyectos del prospecto",
+          title: "Error al obtener detalles del prospecto",
+          text: "Hubo un error al obtener los detalles del prospecto",
           icon: "error",
         });
+        return;
+      } else {
+        setProspectosDetails(prospectDetails);
+        setName(prospectDetails.name || "");
+        setLastName(prospectDetails.last_name || "");
+        setEmail(prospectDetails.email || "");
+        setNote(prospectDetails.note || "");
+        setSocialLink(prospectDetails.social_link || "");
+
+        setContactInfo(prospectDetails.contact_info || "");
+        setResponseCheck(prospectDetails.response === "si");
+        setSchedule(prospectDetails.schedule === "si");
+        setMeetDate(prospectDetails.meet_date || "");
+        setMeetTime(prospectDetails.meet_time || "");
       }
     } catch (error) {
       console.error("Error al manejar la solicitud de detalles:", error);
@@ -115,273 +135,283 @@ const List_prospectos_a = () => {
     }
   };
 
-  const handleAddProject = (id_prospect) => {
-    // Construir la lista de opciones para el select de setters
-    const setterOptions = setterList.map(
-      (setter) =>
-        `<option value="${setter.id}" data-team="${setter.team}">${setter.name}</option>`
-    );
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
-    // Aquí puedes definir la ventana modal de Swal para agregar un nuevo proyecto
-    Swal.fire({
-      title: "Agregar nuevo proyecto",
-      html: `
-        <input type="text" id="budget" class="swal2-input" placeholder="Presupuesto">
-        <input type="text" id="commission" class="swal2-input" placeholder="Comisión">
-        <textarea id="note" class="swal2-textarea" placeholder="Nota"></textarea>
-        <label>Fue atendido ?</label>
-        <select id="attended" class="swal2-select">
-          <option value="Si">Si</option>
-          <option value="No">No</option>
-        </select>
-        <label>Estado del proyecto</label>
-        <select id="status" class="swal2-select">
-          <option value="pendiente">Pendiente</option>
-          <option value="aprobado">Aprobado</option>
-        </select>
-        <label>Seleccionar Setter</label>
-        <select id="setter" class="swal2-select">
-          ${setterOptions.join("")}
-        </select>
-      `,
-      showCancelButton: true,
-      confirmButtonText: "Agregar",
-      cancelButtonText: "Cancelar",
-      preConfirm: () => {
-        const budget = Swal.getPopup().querySelector("#budget").value;
-        const commission = Swal.getPopup().querySelector("#commission").value;
-        const note = Swal.getPopup().querySelector("#note").value;
-        const attended = Swal.getPopup().querySelector("#attended").value;
-        const status = Swal.getPopup().querySelector("#status").value;
-        const setterId = Swal.getPopup().querySelector("#setter").value;
-        const setterTeam = Swal.getPopup().querySelector(
-          `#setter option[value="${setterId}"]`
-        ).dataset.team;
+  const modalRef = useRef();
 
-        // Realizar la solicitud al backend para guardar los datos del nuevo proyecto
-        fetch(`${Config.backendBaseUrlAdmin}add_project.php`, {
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        // Cerrar el modal si se hace clic fuera de él
+        closeModal();
+      }
+    };
+
+    // Añadir el evento de escucha al hacer clic fuera del modal
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      // Limpiar el evento de escucha al desmontar el componente
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [modalRef]);
+
+  const updateProspectInfo = async () => {
+    try {
+      const response = await fetch(
+        `${Config.backendBaseUrlUser}update_prospect_info.php`,
+        {
           method: "POST",
-          credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            id_prospect: id_prospect,
-            id_setter: setterId,
-            team: setterTeam,
-            budget: budget,
-            commission: commission,
-            note: note,
-            attended: attended,
-            status: status,
-          }),
-        })
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error("Error al agregar el proyecto");
-            }
-            return response.json();
-          })
-          .then((data) => {
-            // Aquí puedes manejar la respuesta del backend si es necesario
-            console.log("Respuesta del backend:", data);
-          })
-          .catch((error) => {
-            console.error("Error al agregar el proyecto:", error);
-            Swal.fire({
-              title: "Error",
-              text: "Hubo un error al agregar el proyecto",
-              icon: "error",
-            });
-          });
-      },
-    });
-  };
-
-  const handleEditProject = (project) => {
-    setProjectToEdit(project);
-
-    // Mostrar ventana modal de edición
-    Swal.fire({
-      title: "Editar proyecto",
-      html: `
-        <input type="text" id="budget" class="swal2-input" placeholder="Presupuesto" value="${
-          project.budget
-        }">
-        <input type="text" id="commission" class="swal2-input" placeholder="Comisión" value="${
-          project.commission
-        }">
-        <textarea id="note" class="swal2-textarea" placeholder="Nota">${
-          project.note
-        }</textarea>
-        <label>Fue atendido ?</label>
-        <select id="attended" class="swal2-select">
-          <option value="Si" ${
-            project.attended === "Si" ? "selected" : ""
-          }>Si</option>
-          <option value="No" ${
-            project.attended === "No" ? "selected" : ""
-          }>No</option>
-        </select>
-        <label>Estado del proyecto</label>
-        <select id="status" class="swal2-select">
-          <option value="pendiente" ${
-            project.status === "pendiente" ? "selected" : ""
-          }>Pendiente</option>
-          <option value="aprobado" ${
-            project.status === "aprobado" ? "selected" : ""
-          }>Aprobado</option>
-        </select>
-      `,
-      showCancelButton: true,
-      confirmButtonText: "Actualizar",
-      cancelButtonText: "Cancelar",
-      preConfirm: () => {
-        const budget = Swal.getPopup().querySelector("#budget").value;
-        const commission = Swal.getPopup().querySelector("#commission").value;
-        const note = Swal.getPopup().querySelector("#note").value;
-        const attended = Swal.getPopup().querySelector("#attended").value;
-        const status = Swal.getPopup().querySelector("#status").value;
-
-        // Realizar la solicitud al backend para actualizar los datos del proyecto
-        fetch(`${Config.backendBaseUrlAdmin}update_project.php`, {
-          method: "POST",
           credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
           body: JSON.stringify({
-            id: project.id,
-            budget: budget,
-            commission: commission,
-            note: note,
-            attended: attended,
-            status: status,
+            id: prospectosDetails.id,
+            name,
+            lastname,
+            email,
+            note,
+            socialLink,
+            contactInfo,
+            responseCheck: responseCheck ? "si" : "no",
+            schedule: schedule ? "si" : "no",
+            meetDate,
+            meetTime,
           }),
-        })
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error("Error al actualizar el proyecto");
-            }
-            return response.json();
-          })
-          .then((data) => {
-            // Actualizar la lista de proyectos después de la edición
-            // (Puedes hacerlo de acuerdo a tu estructura de componentes)
-            console.log("Respuesta del backend:", data);
-          })
-          .catch((error) => {
-            console.error("Error al actualizar el proyecto:", error);
-            Swal.fire({
-              title: "Error",
-              text: "Hubo un error al actualizar el proyecto",
-              icon: "error",
-            });
-          });
-      },
-    });
+        }
+      );
+
+      if (response.ok) {
+        Swal.fire({
+          title: "¡Información actualizada!",
+          text: "Los datos del prospecto han sido actualizados correctamente.",
+          icon: "success",
+          didClose: () => {
+            window.location.reload();
+          },
+        });
+        // Cerrar el modal después de editar
+        closeModal();
+      } else {
+        Swal.fire(
+          "Error",
+          "Hubo un problema al actualizar la información del prospecto.",
+          "error"
+        );
+      }
+    } catch (error) {
+      console.error("Error al actualizar la información del prospecto:", error);
+      Swal.fire(
+        "Error",
+        "Hubo un problema al conectar con el servidor.",
+        "error"
+      );
+    }
   };
+
+  const redirectToProjects = (userId) => {
+    window.location = `/admin/proyectos?prospecto=${userId}`;
+  };
+
 
   return (
     <div className="container_prospectos">
       <div className="title">
-        <h2>prospectos</h2>
-        <p>lista de prospectos y setters</p>
+        <h2>{userId != null ? `Prospectos registrados por ${nombreSetter}` : "Prospectos"}</h2>
+        <p>Lista de prospectos</p>
       </div>
 
       <div className="tablas_prospectos">
-        <div className="left">
-          <h2>tabla de prospectos</h2>
+        <div className="tabla_prospectos tabla">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Nº</th>
+                <th scope="col">Prospecto</th>
+                <th scope="col">¿Respondió?</th>
+                <th scope="col">¿Agendó?</th>
+                <th scope="col">Setter</th>
+                <th scope="col">Proyectos</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
 
-          <div className="tabla_prospectos tabla">
-            <table>
-              <thead>
-                <tr>
-                  <th scope="col">Nº</th>
-                  <th scope="col">Prospecto</th>
-                  <th scope="col">¿Respondió?</th>
-                  <th scope="col">¿Agendó?</th>
-                  <th scope="col">Setter</th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                </tr>
-              </thead>
+            <tbody>
+              {prospectos.map((prospecto, index) => (
+                <tr key={index}>
+                  <td data-label="Nº">{prospecto.id}</td>
+                  <td data-label="Prospecto">
+                    {prospecto.name} {prospecto.last_name}
+                  </td>
+                  <td data-label="¿Respondió?" className={prospecto.response}>
+                    <span>{prospecto.response}</span>
+                  </td>
+                  <td data-label="¿Agendó?" className={prospecto.schedule}>
+                    <span>{prospecto.schedule}</span>
+                  </td>
 
-              <tbody>
-                {ListProspects.map((prospecto, index) => (
-                  <tr key={index}>
-                    <td data-label="Nº">{prospecto.id}</td>
-                    <td data-label="Prospecto">
-                      {prospecto.name} {prospecto.last_name}
-                    </td>
-                    <td data-label="¿Respondió?" className={prospecto.response}>
-                      <span>{prospecto.response}</span>
-                    </td>
-                    <td data-label="¿Agendó?" className={prospecto.schedule}>
-                      <span>{prospecto.schedule}</span>
-                    </td>
-                    <td data-label="Setter">
-                      <span>{prospecto.setter_name}</span>
-
-                    </td>
-
-                    <td data-label="">
-                      <button onClick={() => getProspectProjects(prospecto.id)}>
-                        <VisibilityOutlinedIcon />
-                      </button>
-                    </td>
-                    <td data-label="">
-                      <button onClick={() => handleAddProject(prospecto.id)}>
-                        <AddIcon />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <div className="right">
-          <h2>Proyectos del prospecto</h2>
-          <div className="tabla_proyectos tabla">
-            <table>
-              <thead>
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">ID Setter</th>
-                  <th scope="col">Presupuesto</th>
-                  <th scope="col">Comisión</th>
-                  <th scope="col">Nota</th>
-                  <th scope="col">Atendido</th>
-                  <th scope="col">Estado</th>
-                  <th scope="col">Fecha de Registro</th>
-                  <th scope="col">Hora de Registro</th>
-                  <th scope="col"></th>
-                </tr>
-              </thead>
-              <tbody>
-                {selectedProspectProjects.map((project, index) => (
-                  <tr key={index}>
-                    <td>{project.id}</td>
-                    <td>{project.id_setter}</td>
-                    <td>{project.budget}</td>
-                    <td>{project.commission}</td>
-                    <td>{project.note}</td>
-                    <td>{project.attended}</td>
-                    <td>{project.status}</td>
-                    <td>{project.registered_date}</td>
-                    <td>{project.registered_time}</td>
-                    <button onClick={() => handleEditProject(project)}>
+                  <td data-label="Setter">{prospecto.user_name}</td>
+                  <td data-label="Proyectos" className="buttons">
+                    <button onClick={() => redirectToProjects(prospecto.id)}>
+                      {prospecto.project_count}
+                      <VisibilityIcon />
+                    </button>
+                  </td>
+                  <td data-label="Editar">
+                    <button onClick={() => editProspect(prospecto)}>
                       <EditIcon />
                     </button>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
+
+      {isModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal" ref={modalRef}>
+            <button className="close-modal" onClick={closeModal}>
+              <CloseIcon />
+            </button>
+            <h3>
+              Prospecto -{" "}
+              {prospectosDetails.name + " " + prospectosDetails.last_name}
+            </h3>
+
+            <div className="content-modal">
+              <div className="left">
+                <div className="input">
+                  <label htmlFor="name">Nombre del prospecto</label>
+                  <input
+                    id="name"
+                    className="swal2-input"
+                    placeholder="Nombre"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
+                <div className="input">
+                  <label htmlFor="lname">Apellido del prospecto</label>
+                  <input
+                    id="lname"
+                    className="swal2-input"
+                    placeholder="Apellido"
+                    value={lastname}
+                    onChange={(e) => setLastName(e.target.value)}
+                  />
+                </div>
+                <div className="input">
+                  <label htmlFor="email">Email del prospecto</label>
+
+                  <input
+                    id="email"
+                    className="swal2-input"
+                    placeholder="Correo electrónico"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
+                <div className="input">
+                  <label htmlFor="note">Nota</label>
+                  <textarea
+                    id="note"
+                    className="swal2-textarea"
+                    placeholder="Nota"
+                    value={note}
+                    onChange={(e) => setNote(e.target.value)}
+                  ></textarea>
+                </div>
+
+                <div className="input">
+                  <label htmlFor="link">Enlace</label>
+                  <input
+                    id="link"
+                    className="swal2-input"
+                    placeholder="Enlace"
+                    value={socialLink}
+                    onChange={(e) => setSocialLink(e.target.value)}
+                  />
+                </div>
+                <div className="input">
+                  <label htmlFor="contact">Número o contacto adicional</label>
+                  <input
+                    id="contact"
+                    className="swal2-input"
+                    placeholder="Información de contacto"
+                    value={contactInfo}
+                    onChange={(e) => setContactInfo(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div className="right">
+                <div className="inputs">
+                  <div className="input ">
+                    <p>¿Respondió?</p>
+                    <label className="switch">
+                      <input
+                        type="checkbox"
+                        checked={responseCheck}
+                        onChange={() => setResponseCheck(!responseCheck)}
+                      />
+                      <span className="slider"></span>
+                    </label>
+                  </div>
+                  <div className="input ">
+                    <p>¿Agendó?</p>
+                    <label className="switch">
+                      <input
+                        type="checkbox"
+                        checked={schedule}
+                        onChange={() => setSchedule(!schedule)}
+                      />
+                      <span className="slider"></span>
+                    </label>
+                  </div>
+                </div>
+
+                <div className="input">
+                  <button onClick={abrirCalendly}>Agendar en Calendly</button>
+                </div>
+
+                <p>
+                  ¡IMPORTANTE! Registra la fecha y hora de la reunión una vez
+                  registrada en calendly
+                </p>
+                <div className="input">
+                  <label htmlFor="date">Fecha de la reunión agendada</label>
+
+                  <input
+                    id="date"
+                    type="date"
+                    value={meetDate}
+                    onChange={(e) => setMeetDate(e.target.value)}
+                  />
+                </div>
+                <div className="input">
+                  <label htmlFor="time">Hora de la reunión agendada</label>
+
+                  <input
+                    id="time"
+                    type="time"
+                    value={meetTime}
+                    onChange={(e) => setMeetTime(e.target.value)}
+                  />
+                </div>
+                <div className="input">
+                  <button className="update" onClick={updateProspectInfo}>
+                    Actualizar información
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

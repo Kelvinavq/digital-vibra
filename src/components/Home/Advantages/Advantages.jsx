@@ -2,6 +2,7 @@ import "./Advantages.css"
 
 const Advantages = () => {
   return (
+    <div className="container_home">
     <section id="ventajas" className="ventajas">
     <div className="titulo">
       <h2 data-aos="fade-up">
@@ -50,6 +51,7 @@ const Advantages = () => {
       </div>
     </div>
   </section>
+  </div>
   )
 }
 

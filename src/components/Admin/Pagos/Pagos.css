@@ -1,0 +1,369 @@
+.contenedor_pagos {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.pagos .buttons {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.pagos .buttons .left {
+  display: flex;
+  gap: 20px;
+}
+
+.pagos .buttons button {
+  border-radius: 15px;
+  padding: 10px 15px;
+  color: var(--oscuro);
+  transition: all 0.3s;
+}
+
+.pagos .buttons button.active {
+  background: var(--primario);
+  color: var(--blanco);
+}
+
+.pagos .buttons .right button {
+  background: var(--primario);
+  color: var(--blanco);
+}
+
+.pagos .tabla {
+  margin-top: 30px;
+  background: var(--blanco-dos);
+  border-radius: 20px;
+}
+
+.pagos .tabla table {
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+}
+
+.pagos .tabla table thead th {
+  color: var(--texto-claro);
+  font-weight: 400;
+  font-size: 0.9em;
+}
+
+.pagos .tabla table th,
+.pagos .tabla table td {
+  padding: 15px 0;
+  text-align: center;
+}
+
+.pagos .tabla table td.si span {
+  background: var(--success);
+  padding: 5px 10px;
+  border-radius: 8px;
+  color: var(--blanco);
+}
+
+.pagos .tabla table td.no span {
+  background: var(--danger);
+  padding: 5px 8px;
+  border-radius: 8px;
+  color: var(--blanco);
+}
+
+.pagos .tabla table td button svg {
+  color: var(--primario);
+}
+
+.pagos .tabla table th {
+  text-transform: capitalize;
+}
+
+.pagos .tabla table tbody tr {
+  color: var(--oscuro);
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+.pagos .tabla table tbody tr td {
+  text-transform: capitalize;
+}
+
+.pagos .tabla table tbody tr td.aprobado span {
+  background: var(--success);
+  padding: 3px 5px;
+  border-radius: 8px;
+  color: var(--white);
+}
+
+.pagos .tabla table tbody tr td.pendiente span {
+  background: var(--warning);
+  padding: 3px 5px;
+  border-radius: 8px;
+  color: var(--white);
+}
+
+.pagos .tabla table tbody tr td.buttons button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+@media screen and (max-width: 924px) {
+  .pagos .tabla table {
+    border: 0;
+  }
+  .pagos .tabla table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  .pagos .tabla table tr {
+    display: block;
+    margin-bottom: 0.625em;
+  }
+
+  .pagos .tabla table td {
+    display: block;
+    font-size: 0.8em;
+    text-align: right;
+    border-radius: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .pagos .tabla table tbody tr td.buttons button {
+    justify-content: end;
+  }
+
+  .pagos .tabla table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+}
+
+
+
+/* modal */
+
+.pagos .modal-overlay {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  background: #00000048;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9;
+}
+
+.pagos .modal-overlay .modal {
+  width: 720px;
+  max-width: 90%;
+  background: var(--blanco);
+  padding: 20px;
+  border-radius: 20px;
+  position: relative;
+  animation: animate 0.4s ease;
+  max-height: 620px;
+  overflow-y: auto;
+}
+
+.pagos .modal-overlay .modal .close-modal {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: var(--gris);
+  transition: all 0.4s;
+}
+
+.pagos .modal-overlay .modal .close-modal:hover svg {
+  color: var(--primario);
+}
+
+.pagos .modal .content-modal {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+.pagos .modal .content-modal .input {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pagos .modal .content-modal .input input,
+.pagos .modal .content-modal .input textarea,
+.pagos .modal .content-modal .input select {
+  box-sizing: border-box;
+  width: 100%;
+  height: 2.625em;
+  padding: 0 0.75em;
+  transition: border-color 0.1s, box-shadow 0.1s;
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.06), 0 0 0 3px rgba(0, 0, 0, 0);
+  color: inherit;
+  font-size: 1.125em;
+}
+
+.pagos .modal .content-modal .input textarea {
+  height: 120px;
+  padding-top: 10px;
+  outline: none;
+  margin: 10px 0;
+}
+
+.pagos .modal .content-modal .left{
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.pagos .modal .content-modal .right {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.pagos .modal .content-modal .right .inputs {
+  width: 100%;
+  display: flex;
+  gap: 25px;
+}
+
+.pagos .modal .content-modal .right .input {
+  width: 100%;
+  margin-left: 15px;
+}
+
+.pagos .modal .content-modal .right .input p {
+  margin: 0;
+}
+
+.pagos .modal .content-modal .switch {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 3.5em;
+  height: 25px;
+  margin-top: 12px;
+}
+
+/* Hide default HTML checkbox */
+.pagos .modal .content-modal .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.pagos .modal .content-modal .slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: var(--gris);
+  border-radius: 50px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.pagos .modal .content-modal .slider:before {
+  position: absolute;
+  content: "";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+  width: 25px;
+  inset: 0;
+  background-color: white;
+  border-radius: 50px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.233);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.pagos .modal .content-modal .switch input:checked + .slider {
+  background: var(--success);
+}
+
+.pagos .modal .content-modal .switch input:checked + .slider:before {
+  transform: translateX(1.9em);
+}
+
+.pagos .modal .content-modal .right .input button {
+  width: 95%;
+  background: var(--oscuro);
+  border-radius: 12px;
+  text-align: center;
+  height: 45px;
+  padding: 0;
+  color: var(--blanco);
+  cursor: pointer;
+  margin: 18px 0;
+  transition: all 0.3s;
+}
+.pagos .modal .content-modal .right .input button:hover {
+  background: var(--oscuro-dos);
+}
+.pagos .modal .content-modal .right .input .update {
+  background: var(--primario);
+}
+
+.pagos .modal .content-modal .right .input .update:hover {
+  background: var(--secundario);
+}
+
+.pagos .modal .content-modal .right .input input {
+  width: 95%;
+  margin: 10px 0;
+}
+
+@media (max-width: 620px) {
+  .pagos .modal .content-modal {
+    grid-template-columns: 1fr;
+  }
+  .pagos .modal .content-modal .right .input button {
+    width: 97%;
+  }
+  .pagos .modal-overlay .modal {
+    max-height: 450px;
+    overflow-y: auto;
+  }
+}
+
+@keyframes animate {
+  0% {
+    transform: scale(0.7);
+  }
+  45% {
+    transform: scale(1.05);
+  }
+  80% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

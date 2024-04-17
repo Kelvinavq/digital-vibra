@@ -28,9 +28,10 @@ if (
     !isset($data->team) ||
     !isset($data->budget) ||
     !isset($data->commission) ||
-    !isset($data->note) ||
     !isset($data->attended) ||
-    !isset($data->status)
+    !isset($data->status) ||
+    !isset($data->name_project) ||
+    !isset($data->payment_type)
 ) {
     http_response_code(400); // Bad Request
     echo json_encode(array("error" => "Todos los campos son obligatorios."));
@@ -39,19 +40,21 @@ if (
 
 // Asignar datos a variables
 $id_prospect = $data->id_prospect;
-$id_setter = $data->id_setter;
 $team = $data->team;
+$id_setter = $data->id_setter;
 $budget = $data->budget;
 $commission = $data->commission;
-$note = $data->note;
 $attended = $data->attended;
 $status = $data->status;
+$payment_type = $data->payment_type;
+$name_project = $data->name_project;
 $registeredDate = date('Y-m-d');
 $registeredTime = date('H:i:s');
 
+
 try {
     // Preparar consulta SQL para insertar el nuevo proyecto
-    $query = "INSERT INTO projects (id_setter, id_prospect, budget, commission, note, attended, status, registered_date, registered_time, team) VALUES (:id_setter, :id_prospect, :budget, :commission, :note, :attended, :status, :registered_date, :registered_time, :team)";
+    $query = "INSERT INTO projects (id_setter, id_prospect, budget, commission, attended, status, payment_type, registered_date, registered_time, project_name, team) VALUES (:id_setter, :id_prospect, :budget, :commission, :attended, :status, :payment_type, :registered_date, :registered_time, :name_project, :team)";
     $stmt = $conexion->prepare($query);
 
     // Asignar valores a los parámetros de la consulta
@@ -59,11 +62,12 @@ try {
     $stmt->bindParam(":id_prospect", $id_prospect);
     $stmt->bindParam(":budget", $budget);
     $stmt->bindParam(":commission", $commission);
-    $stmt->bindParam(":note", $note);
     $stmt->bindParam(":attended", $attended);
     $stmt->bindParam(":status", $status);
+    $stmt->bindParam(":payment_type", $payment_type);
     $stmt->bindParam(":registered_date", $registeredDate);
     $stmt->bindParam(":registered_time", $registeredTime);
+    $stmt->bindParam(":name_project", $name_project);
     $stmt->bindParam(":team", $team);
 
     // Ejecutar la consulta
