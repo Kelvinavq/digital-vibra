@@ -7,6 +7,7 @@ const List_Prospects_campaign = () => {
   const [prospectos, setProspectos] = useState([]);
   const [selectedProspects, setSelectedProspects] = useState([]);
   const [isButtonActive, setIsButtonActive] = useState(false);
+  const [prospectosDetails, setProspectosDetails] = useState([]);
 
   useEffect(() => {
     const obtenerProspectos = async () => {
@@ -218,6 +219,71 @@ const List_Prospects_campaign = () => {
     }
   };
 
+  const viewProspect = async (prospecto) => {
+    try {
+      const response = await fetch(
+        `${Config.backendBaseUrlAdmin}get_prospect_campaign_detail.php?id=${prospecto.id}`,
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
+
+      const prospectoDetail = await response.json();
+
+      if (!response.ok) {
+        console.error("Error al obtener detalles del prospecto");
+        Swal.fire({
+          title: "Error al obtener detalles del prospecto",
+          text: "Hubo un error al obtener los detalles del prospecto",
+          icon: "error",
+        });
+        return;
+      } else {
+        setProspectosDetails(prospectoDetail);
+        console.log(prospectoDetail);
+        Swal.fire({
+          title: "Detalles del Prospecto",
+          html: `
+       
+          <div className="detalle_swal">
+            <p>Nombre: <strong>${prospectoDetail.name}</strong></p>
+          </div>
+          <div className="detalle_swal">
+            <p>Apellido: <strong>${prospectoDetail.lname}</strong></p>
+          </div>
+          <div className="detalle_swal">
+            <p>Correo: <strong>${prospectoDetail.email}</strong></p>
+          </div>
+          <div className="detalle_swal">
+            <p>Teléfono: <strong>${prospectoDetail.phone}</strong></p>
+          </div>
+          <div className="detalle_swal">
+            <p>Fecha: <strong>${prospectoDetail.registration_date}</strong></p>
+          </div>
+          <div className="detalle_swal">
+            <p>Hora: <strong>${prospectoDetail.registration_time}</strong></p>
+          </div>
+          <div className="detalle_swal">
+            <p>Setter asignado: <strong>${prospectoDetail.setter_name}</strong></p>
+          </div>
+          <div className="detalle_swal">
+            <p>Detalles: <strong>${prospectoDetail.details}</strong></p>
+          </div>
+          `,
+          confirmButtonText: "Cerrar",
+        });
+      }
+    } catch (error) {
+      console.error("Error al manejar la solicitud de detalles:", error);
+      Swal.fire({
+        title: "Error",
+        text: "Error inesperado al manejar la solicitud de detalles",
+        icon: "error",
+      });
+    }
+  };
+
   return (
     <>
       <div className="tabla_prospectos_publicidad">
@@ -248,6 +314,7 @@ const List_Prospects_campaign = () => {
                 <th scope="col">Correo</th>
                 <th scope="col">Teléfono</th>
                 <th scope="col">Tipo</th>
+                <th scope="col">Descripción</th>
                 <th scope="col">Setter</th>
               </tr>
             </thead>
@@ -259,6 +326,7 @@ const List_Prospects_campaign = () => {
                   className={
                     selectedProspects.includes(prospecto.id) ? "active" : ""
                   }
+                  onClick={() => viewProspect(prospecto)}
                 >
                   <td data-label="Seleccionar">
                     <input
@@ -276,6 +344,7 @@ const List_Prospects_campaign = () => {
                   <td data-label="Correo">{prospecto.email}</td>
                   <td data-label="Teléfono">{prospecto.phone}</td>
                   <td data-label="Tipo">{prospecto.type}</td>
+                  <td data-label="Tipo">{prospecto.details}</td>
                   <td data-label="Setter">
                     {prospecto.id_setter === null ? (
                       <span>Sin asignar</span>

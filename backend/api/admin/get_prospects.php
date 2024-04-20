@@ -16,7 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         if ($userId) {
             $query .= " WHERE p.id_setter = :userId";
         }
-        $query .= " GROUP BY p.id"; // Agrupar por ID de prospecto para contar proyectos
+        $query .= " GROUP BY p.id"; 
+        $query .= " ORDER BY p.id DESC"; 
 
         $stmt = $conexion->prepare($query);
 

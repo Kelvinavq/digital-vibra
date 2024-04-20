@@ -3,6 +3,11 @@
     justify-content: center;
 }
 
+.swal2-html-container .detalle_swal{
+  width: 100% !important;
+  display: flex !important;
+}
+
 .tabla_prospectos_publicidad{
  
     width: 100%;

@@ -63,8 +63,8 @@ const Form_Publicidad = () => {
         // Manejar la respuesta exitosa del servidor
         Swal.fire({
           icon: "success",
-          title: "Tu solicitud ha sido enviada con éxito",
-          text: "El equipo de Vibra Digital se contactará contigo.",
+          title: "¡Gracias por confiar en nosotros para llevar tu negocio al futuro digital! ",
+          confirmButtonText: "Continuar",
           didClose: () =>{
             window.location = "/";
           }
@@ -109,9 +109,7 @@ const Form_Publicidad = () => {
               adapten perfectamente a tu visión y objetivos comerciales.
             </p>
             <p>
-              ¡Juntos, podemos hacer que tu presencia en línea sea memorable y
-              efectiva! ¡Gracias por confiar en nosotros para llevar tu negocio
-              al futuro digital!"
+              ¡Juntos, podemos hacer que tu presencia en línea sea memorable y efectiva! "
             </p>
           </div>
 
