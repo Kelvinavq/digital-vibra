@@ -7,12 +7,22 @@ import Config from "../../../config/Config";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import EditIcon from "@mui/icons-material/Edit";
 import CloseIcon from "@mui/icons-material/Close";
+import SearchIcon from "@mui/icons-material/Search";
 
 const List_prospectos_a = () => {
   const [prospectos, setProspectos] = useState([]);
+  const [countProspects, setCountProspects] = useState(0);
+
   const location = useLocation();
   const userId = new URLSearchParams(location.search).get("id");
   const [nombreSetter, setNombreSetter] = useState("");
+
+  const [responseFilter, setResponseFilter] = useState("");
+  const [scheduleFilter, setScheduleFilter] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredProspects, setFilteredProspects] = useState([...prospectos]);
+
+
 
   useEffect(() => {
     const fetchProspectos = async () => {
@@ -46,6 +56,7 @@ const List_prospectos_a = () => {
         if (responseProspectos.ok) {
           const dataProspectos = await responseProspectos.json();
           setProspectos(dataProspectos);
+          setCountProspects(dataProspectos.length);
         } else {
           // Manejar el caso de error
           Swal.fire({
@@ -217,11 +228,83 @@ const List_prospectos_a = () => {
   };
 
 
+// Función para aplicar los filtros
+const applyFilters = () => {
+  let filteredData = [...prospectos];
+
+  // Filtrar por respuesta
+  if (responseFilter !== "") {
+    filteredData = filteredData.filter((prospecto) => prospecto.response === responseFilter);
+  }
+
+  // Filtrar por agendamiento
+  if (scheduleFilter !== "") {
+    filteredData = filteredData.filter((prospecto) => prospecto.schedule === scheduleFilter);
+  }
+
+  // Filtrar por búsqueda de nombre y apellido o email
+  if (searchTerm !== "") {
+    const searchTermLowerCase = searchTerm.toLowerCase();
+    filteredData = filteredData.filter((prospecto) =>
+      `${prospecto.name} ${prospecto.last_name} ${prospecto.email}`.toLowerCase().includes(searchTermLowerCase)
+    );
+  }
+
+  // Actualizar los prospectos filtrados
+  setFilteredProspects(filteredData);
+};
+
+useEffect(() => {
+  applyFilters();
+}, [responseFilter, scheduleFilter, searchTerm, prospectos]);
+
   return (
     <div className="container_prospectos">
       <div className="title">
         <h2>{userId != null ? `Prospectos registrados por ${nombreSetter}` : "Prospectos"}</h2>
         <p>Lista de prospectos</p>
+      </div>
+
+      <div className="filtro">
+        <div className="filtros">
+          <div>
+            <span>Prospectos Registrados:</span>
+            <p>{countProspects}</p>
+          </div>
+
+          <div>
+            <select
+              value={responseFilter}
+              onChange={(e) => setResponseFilter(e.target.value)}
+            >
+              <option value="">¿Respondió?</option>
+              <option value="si">Si</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+          <div>
+            <select
+              value={scheduleFilter}
+              onChange={(e) => setScheduleFilter(e.target.value)}
+            >
+              <option value="">¿Agendó Reunión?</option>
+              <option value="si">Si</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+          {/* <div>
+            <button>Filtrar</button>
+          </div> */}
+        </div>
+        <div className="buscador">
+          <SearchIcon />
+          <input
+            type="text"
+            placeholder="Buscar prospecto..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
       </div>
 
       <div className="tablas_prospectos">
@@ -240,7 +323,7 @@ const List_prospectos_a = () => {
             </thead>
 
             <tbody>
-              {prospectos.map((prospecto, index) => (
+            {filteredProspects.map((prospecto, index) => (
                 <tr key={index}>
                   <td data-label="Nº">{prospecto.id}</td>
                   <td data-label="Prospecto">

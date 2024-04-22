@@ -3,6 +3,25 @@
   justify-content: center;
 }
 
+.tabla_usuarios .title{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tabla_usuarios .title button{
+  background: var(--primario);
+  padding: 10px 15px;
+  border-radius: 12px;
+  color: var(--blanco);
+  cursor: pointer;
+  transition: all .3s;
+}
+
+.tabla_usuarios .title button:hover{
+  background: var(--oscuro);
+}
+
 .tabla_usuarios {
   width: 100%;
   display: flex;
